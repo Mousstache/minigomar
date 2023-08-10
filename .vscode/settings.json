@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"pipex.h": "c",
+		"ft_printf.h": "c"
+	}
+}
