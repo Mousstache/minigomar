@@ -29,7 +29,7 @@ int		ft_unset(char **var, char ***env)
 		return (-1);
 	while (var[++z])
 	{
-		// printf("Value: %s\n" ,(*env)[++i]);
+		printf("Value: %s\n" ,(*env)[++i]);
 		while ((*env)[++i])
 		{
 			k = -1;

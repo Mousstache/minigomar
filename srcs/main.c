@@ -51,8 +51,10 @@ int	main(int argc, char **argv, char **env)
 	data = starton();
 	(void)argv;
 	(void)argc;
-	(void)env; //test
+	(void)env;
 	data->env_copy = create_env(env);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, &ctrlc);
 	while (1)
 	{
 		input = readline("minisheu> ");
@@ -81,12 +83,10 @@ int	main(int argc, char **argv, char **env)
 			free(data->docs[i].del);
 			close(data->docs[i].fd[0]);
 		}
-		// ft_freetab(&data->cmds->cmd);
 		if (data->nb_hd)
 			free(data->docs);
 		ft_free_tab(data->tab);
 	}
 	ft_free_tab(data->env_copy);
-	// ft_free_tab(data->env_copy);
 	return (0);
 }

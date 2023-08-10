@@ -23,7 +23,7 @@ int	ft_is_builtin(t_cmd *cmd, char ***env)
 		return (0);
 	while (str[i])
 	{
-		if (!ft_strncmp(cmd->cmd, str[i], ft_strlen(cmd->cmd)))
+		if (!ft_strcmp(cmd->cmd, str[i]))
 		{
 			// ft_env(NULL, env);
 			func[i](++cmd->arg, env);
@@ -43,7 +43,7 @@ int	ft_is_builtin_vrmnt(char *str)
 	i = 0;
 	while (str && tab[i])
 	{
-		if (!ft_strncmp(str, tab[i], ft_strlen(str)))
+		if (!ft_strcmp(str, tab[i]))
 			return (1);
 		i++;
 	}
