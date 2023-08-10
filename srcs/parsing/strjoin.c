@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strjoin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maheraul <maheraul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 22:46:31 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/08 18:56:38 by maheraul         ###   ########.fr       */
+/*   Updated: 2023/08/10 22:29:21 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	*get_value_var(t_data *env, int i)
 
 	j = 0;
 	k = 0;
+	// dprintf(2, "%p\n", env);
 	while (ft_isalpha(env->env_copy[i][j]) || env->env_copy[i][j] == '_')
 		j++;
 	if (env->env_copy[i][j] != '=')
