@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maheraul <maheraul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 20:33:31 by maheraul          #+#    #+#             */
-/*   Updated: 2023/01/16 00:07:35 by maheraul         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:25:07 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_freetab(char **tab)
 	int	i;
 
 	i = 0;
+	if (!tab)
+		return (NULL);
 	while (tab[i])
 	{
 		free(tab[i]);
@@ -53,18 +55,7 @@ char	*ft_strndup(char const *src, int start, int end)
 	return (dest);
 }
 
-static int	cc_tichar(char sep, char c)
-{
-	int	i;
-
-	i = 0;
-	if (sep == c)
-		return (1);
-	i++;
-	return (0);
-}
-
-int	ft_strlen_total(char const *str, char sep)
+int	ft_strlen_total(char const *str, char *sep)
 {
 	int	i;
 	int	total;
@@ -73,18 +64,18 @@ int	ft_strlen_total(char const *str, char sep)
 	total = 0;
 	while (str[i])
 	{
-		while (cc_tichar(sep, str[i]) && str[i])
+		while (ft_strchr(sep, str[i]) && str[i])
 			i++;
 		if (str[i] == '\0')
 			break ;
 		total++;
-		while (!cc_tichar(sep, str[i]) && str[i])
+		while (!ft_strchr(sep, str[i]) && str[i])
 			i++;
 	}
 	return (total);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char *str)
 {
 	int		i;
 	int		start;
@@ -93,17 +84,17 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	total = 0;
-	tab = malloc(sizeof(*tab) * (ft_strlen_total(s, c) + 1));
+	tab = malloc(sizeof(*tab) * (ft_strlen_total(s, str) + 1));
 	if (!tab)
 		return (NULL);
 	while (s[i])
 	{
-		while (cc_tichar(c, s[i]) && s[i])
+		while (ft_strchr(str, s[i]) && s[i])
 			i++;
 		if (s[i] == '\0')
 			break ;
 		start = i;
-		while (!cc_tichar(c, s[i]) && s[i])
+		while (!ft_strchr(str, s[i]) && s[i])
 			i++;
 		tab[total++] = ft_strndup(s, start, i);
 		if (!tab)
@@ -112,26 +103,3 @@ char	**ft_split(char const *s, char c)
 	tab[total] = 0;
 	return (tab);
 }
-/*//	printf("%s", tab);
-//	return (tab);
-
- int	b;
- b = 0;
- while(b < n_mot)
- {
-	 	printf("%s\n", tab[b]);
- 	b++;
- }
-		if (!tab)
-			free (tab);
-}
-
-
-int	main(void)
-{
-	char *str = "jscjlavejjkl;kmjcokk;kcklc";
-//	char *charset = "j";
- 	ft_split(str, 'j');
- 	return(0);
- }
-*/

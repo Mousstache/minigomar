@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:09:30 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/08 20:47:04 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/11 23:19:46 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	*free_pipex(t_data *data)
 
 	i = 0;
 	var = 0;
-	//close_heredocs(data->docs, data->nb_hd);
 	while (i < data->nbcmd)
 	{
 		waitpid(data->pid[i++], &data->status, 0);

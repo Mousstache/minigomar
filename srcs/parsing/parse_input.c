@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maheraul <maheraul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 22:44:42 by maheraul          #+#    #+#             */
-/*   Updated: 2023/07/13 21:02:26 by maheraul         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:39:42 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	count_sep(t_var *tot, char *input)
 	if ((input[tot->i] != '|' && input[tot->i + 1] && input[tot->i] == '>'
 			&& input[tot->i + 1] == '>') || (input[tot->i] != '|'
 			&& input[tot->i + 1] && input[tot->i] == '<' && input[tot->i
-				+ 1] == '<'))
+			+ 1] == '<'))
 		tot->d = 2;
 	if (tot->i > 0)
 		tot->j++;
@@ -53,7 +53,7 @@ void	*find_sep(t_var *var, char *input, char *new)
 	if ((input[var->i] != '|' && input[var->i + 1] && input[var->i] == '>'
 			&& input[var->i + 1] == '>') || (input[var->i] != '|'
 			&& input[var->i + 1] && input[var->i] == '<' && input[var->i
-				+ 1] == '<'))
+			+ 1] == '<'))
 		var->d = 2;
 	if (var->i > 0)
 		new[var->j++] = ' ';

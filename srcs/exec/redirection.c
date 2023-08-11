@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maheraul <maheraul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 02:49:45 by maheraul          #+#    #+#             */
-/*   Updated: 2023/07/25 18:40:01 by maheraul         ###   ########.fr       */
+/*   Updated: 2023/08/11 23:33:55 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	invalid_fd(t_data *data, t_cmd *cmd, char *file)
 	close_heredocs(data->docs, data->nb_hd);
 	ft_printf("bash: %s: ", file);
 	perror("");
-	free_arg(0, 2, 1, cmd->arg, data->tab, &cmd->lst);
+	free_arg(0, 3, 1, cmd->arg, data->tab, data->env_copy, &cmd->lst);
 	if (data->previous != -1)
 		close(data->previous);
 	exit(1);
@@ -25,18 +25,14 @@ void	invalid_fd(t_data *data, t_cmd *cmd, char *file)
 
 int	quelpipe(t_data *data, t_doc *doc, t_list *lst)
 {
-	int	i = -1;
+	int	i;
 
+	i = -1;
 	(void)lst;
 	while (++i < data->nb_hd)
 	{
-	 	if (!ft_strcmp(lst->file, doc[i].del))
-		{
-		// fprintf(stderr, "%s><%s|{%i}{%i}\n", lst->file,doc[i].del, doc[i].index, lst->index);
-
+		if (!ft_strcmp(lst->file, doc[i].del))
 			return (doc[i].fd[0]);
-		}
-		// i++;
 	}
 	return (-1);
 }
@@ -49,19 +45,17 @@ void	close_heredocs(t_doc *doc, int limit)
 	while (i < limit)
 	{
 		close(doc[i].fd[0]);
-		//printf("limit = %d i = %d\n", limit , i);
 		free(doc[i++].del);
 	}
 	if (limit)
 		free(doc);
 }
 
-void	openfiles(t_data *data, t_cmd *cmd, int i)
+void	openfiles(t_data *data, t_cmd *cmd)
 {
 	t_list	*tmp;
 	int		fd;
 
-	(void) i;
 	tmp = cmd->lst;
 	while (tmp)
 	{
@@ -72,7 +66,7 @@ void	openfiles(t_data *data, t_cmd *cmd, int i)
 		else if (tmp->type == 3)
 			fd = open(tmp->file, O_RDONLY);
 		else if (tmp->type == 4)
-			fd = quelpipe(data, data->docs, tmp); // data->docs[i].fd[0];
+			fd = quelpipe(data, data->docs, tmp);
 		if (fd == -1)
 			invalid_fd(data, cmd, tmp->file);
 		if (tmp->type == 1 || tmp->type == 2)
@@ -97,15 +91,5 @@ void	redirection(t_data *data, int index, t_cmd *cmd)
 	}
 	close(data->fd[0]);
 	close(data->fd[1]);
-	openfiles(data, cmd, index);
+	openfiles(data, cmd);
 }
-
-// ESPACE = ' ' '\t'
-
-
-//at << a > b | cat << a > c | cat << a > d  -> traire fichier 1
-//  << s echo j
-//  echo << s > fichier
-//  pwd << s
-//  pwd << a > kl
-//  << "a b"

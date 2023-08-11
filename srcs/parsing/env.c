@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 22:57:02 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/10 22:23:22 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:39:38 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_expand_quotes(char **new, int *i, char *str, t_data *env)
 void	ft_expand_else(char **new, int *i, char *str)
 {
 	if (count_between_quotes(str + *i, '"') < count_between_quotes(str + *i,
-			39))
+																	39))
 	{
 		if (count_between_quotes(str + *i, '"') < count_between_quotes(str + *i,
 																		'$'))

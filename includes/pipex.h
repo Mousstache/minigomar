@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:25:39 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/10 21:17:28 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/11 23:33:31 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ typedef struct t_data
 
 	int				nb_hd;
 	t_doc			*docs;
-	char	**env_copy;
-	char		*var_name;
-	char		*var_value;
+	char			**env_copy;
+	char			*var_name;
+	char			*var_value;
 }					t_data;
 
 typedef struct t_var
@@ -95,7 +95,7 @@ typedef struct t_var
 typedef int			(*t_builtin)(char **arg, char ***env);
 
 t_data				*starton(void);
-int					ft_strlen_total(char const *str, char sep);
+int					ft_strlen_total(char const *str, char *sep);
 
 //utils
 void				*ft_free_tab(char **tab);
@@ -115,7 +115,7 @@ int					get_cmd(t_data *data);
 //redirection
 void				redirection(t_data *data, int index, t_cmd *cmd);
 void				invalid_fd(t_data *data, t_cmd *cmd, char *file);
-void				openfiles(t_data *data, t_cmd *cmd, int i);
+void				openfiles(t_data *data, t_cmd *cmd);
 void				close_heredocs(t_doc *doc, int limit);
 int	quelpipe(t_data *data, t_doc *doc, t_list *lst);
 
@@ -127,7 +127,7 @@ int					chevron_comp(char *str);
 int					countarg(char **tab);
 t_cmd				*parse(char *str);
 //lst.c
-t_list	*ft_redirnew(char *file, int type, int index);
+t_list				*ft_redirnew(char *file, int type, int index);
 void				ft_rediradd_back(t_list **lst, t_list *new);
 void				ft_lst_clear(t_list **lst);
 void				ft_printlist(t_list *list);
@@ -154,9 +154,10 @@ void				*free_arg(int str, int tab, int lst, ...);
 void				free_all(char **tab);
 void				*free_pipex(t_data *data);
 //heredoc
+void				child_hd(char *del, int fd1);
 bool				here_doc(t_data *data, char *str);
 //exit
-int					exit_one(char **arg, char **env);
+int					exit_one(char **arg);
 int					ft_exit_error(char **arg);
 long long			ft_atoi_max(char *str);
 int					ft_is_num(char *str);
@@ -176,16 +177,15 @@ char	*ft_strjoin_quote(char *s1, char *s2, char c);
 char	*strjoin_value_var(char *str, int j, t_data *env);
 char	*get_value_var(t_data *env, int i);
 char	*ft_strjoin_btw_quote(char *s1, char *s2);
-
-int	check_var_exist(char **env, char *variable);
-int	count_var_len(char *str);
-int	count_between_quotes(char *str, char c);
-int	count_string(char **env);
+int		check_var_exist(char **env, char *variable);
+int		count_var_len(char *str);
+int		count_between_quotes(char *str, char c);
+int		count_string(char **env);
 char	**create_env(char **env);
-int	count_quotes(char *str);
-int	quotes(char *str);
+int		count_quotes(char *str);
+int		quotes(char *str);
 char	*ft_expand(char *str, t_data *env);
-int	syntax(char *str);
+int		syntax(char *str);
 char	*negatif(char *str);
 char	*positif(char *str);
 char	*delete_quotes(char *str);

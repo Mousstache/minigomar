@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 22:40:06 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/10 21:22:34 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:48:55 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,23 @@ t_cmd	*parse(char *str)
 	char			**input;
 	int				j;
 	int				i;
+	int				v;
+	int				r;
 
+	
 	j = 0;
 	i = 0;
 	lst = 0;
-	input = ft_split(str, ' ');
+	input = ft_split(str, " 	");
 	if (!input)
 		return (NULL);
 	cmds.arg = ft_calloc(sizeof(char *), countarg(input) + 1);
 	if (!cmds.arg)
 		return (ft_freetab(input), NULL);
-	int v = 0;
+	v = 0;
 	while (input[i])
 	{
-		int r = chevron_comp(input[i]);
+		r = chevron_comp(input[i]);
 		if (r)
 		{
 			ft_rediradd_back(&lst, ft_redirnew(ft_strdup(input[i + 1]), r, v));

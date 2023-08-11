@@ -6,7 +6,7 @@
 #    By: motroian <motroian@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/03 00:22:02 by maheraul          #+#    #+#              #
-#    Updated: 2023/08/08 20:31:01 by motroian         ###   ########.fr        #
+#    Updated: 2023/08/11 23:31:58 by motroian         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ DIR_OBJS		=	objs
 
 SRCS_NAMES		=	main.c \
 					heredoc/heredoc.c \
+					heredoc/here_doc2.c \
 					builtin/builtin.c \
 					builtin/export.c \
 					builtin/unset.c \

@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 03:12:53 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/08 20:23:35 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:40:39 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	ft_env(char **arg, char ***env)
 {
-	(void)arg;
 	int		i;
 	char	**tab;
 
+	(void)arg;
 	i = 0;
 	tab = *env;
 	while (tab[i])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maheraul <maheraul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:52:55 by maheraul          #+#    #+#             */
-/*   Updated: 2023/03/29 02:12:09 by maheraul         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:01:19 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void				*ft_memchr(const void *s, int c, size_t n);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_itoa(int n);
-char				**ft_split(char const *s, char c);
+char				**ft_split(char const *s, char *str);
 char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_strchr(char const *str, int c);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));

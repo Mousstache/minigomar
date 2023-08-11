@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 23:46:55 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/10 22:26:13 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/11 23:20:32 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	count_in_var(char *str)
 
 int	count_var_len(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str[i] >= '0' && str[i] <= '9')

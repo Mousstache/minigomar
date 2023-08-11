@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 23:24:23 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/08 22:26:23 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/11 23:18:44 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 int	ft_is_builtin(t_cmd *cmd, char ***env)
 {
 	int						i;
-	static const char		*str[8] = {"pwd", "cd", "echo", "exit", "export", "unset", "env", NULL};
-	static const t_builtin	func[7] = {ft_pwd, ft_cd, ft_echo, ft_exit, ft_export, ft_unset, ft_env};
+	static const char		*str[8] = {"pwd", "cd", "echo", "exit",
+		"export", "unset", "env", NULL};
+	static const t_builtin	func[7] = {ft_pwd, ft_cd, ft_echo,
+		ft_exit, ft_export, ft_unset, ft_env};
 
 	i = 0;
 	if (!cmd)
@@ -25,9 +27,7 @@ int	ft_is_builtin(t_cmd *cmd, char ***env)
 	{
 		if (!ft_strcmp(cmd->cmd, str[i]))
 		{
-			// ft_env(NULL, env);
-			func[i](++cmd->arg, env);
-			// ft_env(NULL, env);
+			func[i](cmd->arg + 1, env);
 			return (1);
 		}
 		i++;
@@ -38,7 +38,8 @@ int	ft_is_builtin(t_cmd *cmd, char ***env)
 int	ft_is_builtin_vrmnt(char *str)
 {
 	int					i;
-	static const char	*tab[8] = {"pwd", "cd", "echo", "exit", "export", "unset", "env", NULL};
+	static const char	*tab[8] = {"pwd", "cd", "echo",
+		"exit", "export", "unset", "env", NULL};
 
 	i = 0;
 	while (str && tab[i])

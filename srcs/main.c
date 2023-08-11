@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:37:45 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 20:08:46 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:46:04 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ t_data	*starton(void)
 
 int	valid_syntax(char **input, t_data *data)
 {
-	char *tmp;
-	
+	char	*tmp;
+
 	if (quotes(*input))
 		return (ft_printf("quote fail\n"), free(*input), 1);
 	if (syntax(*input))
@@ -66,7 +66,7 @@ int	main(int argc, char **argv, char **env)
 		if (!input)
 			break ;
 		if (!*input)
-			continue;
+			continue ;
 		add_history(input);
 		// yassine
 		negatif(input);
@@ -77,8 +77,8 @@ int	main(int argc, char **argv, char **env)
 			exit(1);
 		if (here_doc(data, input))
 			return (1);
-		data->tab = ft_split(input, '|');
-		data->nbcmd = ft_strlen_total(input, '|');
+		data->tab = ft_split(input, "|");
+		data->nbcmd = ft_strlen_total(input, "|");
 		free(input);
 		if (init_struct(data, data->env_copy))
 			return (1);

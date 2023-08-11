@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:00:59 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/08 20:21:52 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:24:24 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,13 @@ int	ft_exit(char **arg, char ***env)
 
 	data = starton();
 	if (data->nbcmd == 1)
-		return (exit_one(arg, *env));
+		return (exit_one(arg));
 	else if (data->nbcmd > 1)
 		return (exit_fork(arg, *env));
 	return (0);
 }
 
-void dupclose(int fd[2])
+void	dupclose(int fd[2])
 {
 	dup2(fd[0], STDOUT_FILENO);
 	dup2(fd[1], STDIN_FILENO);
@@ -104,18 +104,16 @@ void dupclose(int fd[2])
 	close(fd[1]);
 }
 
-int	exit_one(char **arg, char **env)
+int	exit_one(char **arg)
 {
 	t_data	*data;
 
-	(void)env;
 	data = starton();
-
 	if (!*arg || !arg[1])
 	{
 		dupclose(data->fddup);
-		printf("exit\n");
-		free_arg(0, 2, 1, data->onecmd->arg, data->tab, &data->onecmd->lst);
+		free_arg(0, 3, 1, data->tab, data->env_copy, data->onecmd->arg,
+				&data->onecmd->lst);
 		exit(0);
 	}
 	if (arg[1] && !ft_strcmp(arg[1], "--"))
@@ -123,8 +121,8 @@ int	exit_one(char **arg, char **env)
 		if (!arg[2])
 		{
 			dupclose(data->fddup);
-			printf("exit\n");
-			free_arg(0, 2, 1, data->onecmd->arg, data->tab, &data->onecmd->lst);
+			free_arg(0, 3, 1, data->tab, data->env_copy, data->onecmd->arg,
+					&data->onecmd->lst);
 			exit(0);
 		}
 		else if (!ft_exit_error(arg + 1))

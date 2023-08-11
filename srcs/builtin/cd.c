@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 02:56:31 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 19:43:30 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/11 23:17:38 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	ft_cd(char **arg, char ***env)
 {
 	(void)env;
-	// printf("arg 1 {%s} arg 2 [%s]\n", arg[0], arg[2]);
 	if (arg[0] && arg[1])
 	{
 		printf("bash: cd: too many arguments\n");
@@ -28,15 +27,3 @@ int	ft_cd(char **arg, char ***env)
 	}
 	return (0);
 }
-
-	// int	main(int ac, char **av, char **env)
-	// {
-	// 	printf("AVANT ");
-	// 	ft_pwd(av, env);
-	// 	printf("\n");
-	// 	ft_cd(av, env);
-	// 	printf("\n");
-	// 	printf("APRES ");
-	// 	ft_pwd(av, env);
-	// 	printf("\n");
-	// }

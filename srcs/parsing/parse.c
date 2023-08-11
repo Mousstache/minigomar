@@ -6,16 +6,17 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 20:56:41 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/08 20:18:50 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:39:45 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-
-char *positif(char *str)
+char	*positif(char *str)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (str[i])
 	{
 		if (str[i] < 0)

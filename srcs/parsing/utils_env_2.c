@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 23:15:13 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/10 20:53:46 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/11 23:23:11 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**create_env(char **env)
 	char	**str;
 
 	i = 0;
-	str = calloc(sizeof(char *), (count_string(env) + 1));
+	str = ft_calloc(sizeof(char *), (count_string(env) + 1));
 	if (!str)
 		return (NULL);
 	while (env[i])
