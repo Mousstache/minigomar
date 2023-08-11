@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 21:15:00 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/10 21:11:15 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:37:09 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,6 @@ bool	here_doc(t_data *data, char *str)
 	{
 		while(i < data->nb_hd)
 		{
-			// printf("[%i]%i | %i\n", i, doc[i].fd[0], doc[i].fd[1]);
 			close(doc[i].fd[0]);
 			child_hd(doc[i].del, doc[i].fd[1]);
 			free(doc[i].del);

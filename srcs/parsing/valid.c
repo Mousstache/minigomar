@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:41:40 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/08 19:45:44 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:25:38 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ int	syntax(char *str)
 			i++;
 			while (str[i] && (str[i] == ' ' || str[i] == '	'))
 				i++;
-			if (ft_strchr("><|", str[i]))
+			if ((str[i] == '<') && (str[i + 1] == '<'))
+				return (0);
+			else if (ft_strchr("><|", str[i]))
 				return (1);
 		}
 	}
