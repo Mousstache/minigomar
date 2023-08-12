@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 22:44:42 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 21:39:42 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/12 22:30:55 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,13 @@ void	*parse_input(char *input)
 	{
 		if (input[var.i] == '|' || input[var.i] == '<' || input[var.i] == '>')
 			new = find_sep(&var, input, new);
-		while (var.d > 0)
-		{
-			var.d--;
+		while (var.d-- > 0)
 			new[var.j++] = input[var.i++];
-		}
 		if (var.n == 1 && var.i != var.len)
 			new[var.j++] = ' ';
 		var.n = 0;
 		var.d = 1;
 	}
+	free(input);
 	return (new);
 }

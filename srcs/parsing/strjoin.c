@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 22:46:31 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/10 22:29:21 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/12 22:31:19 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	*get_value_var(t_data *env, int i)
 
 	j = 0;
 	k = 0;
-	// dprintf(2, "%p\n", env);
 	while (ft_isalpha(env->env_copy[i][j]) || env->env_copy[i][j] == '_')
 		j++;
 	if (env->env_copy[i][j] != '=')
@@ -147,29 +146,3 @@ char	*ft_strjoin_quote(char *s1, char *s2, char c)
 		free(s1);
 	return (str);
 }
-
-// char	*ft_strjoin(char *s1, char *s2)
-// {
-// 	char	*res;
-// 	int		i;
-// 	int		j;
-
-// 	i = 0;
-// 	j = 0;
-// 	res = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-// 	if (!res)
-// 		return (NULL);
-// 	while (s1 && s1[i])
-// 	{
-// 		res[i] = s1[i];
-// 		i++;
-// 	}
-// 	while (s2 && s2[j])
-// 		res[i++] = s2[j++];
-// 	res[i] = 0;
-// 	if (s1)
-// 		free(s1);
-// 	if (s2)
-// 		free(s2);
-// 	return (res);
-// }

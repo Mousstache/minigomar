@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:37:45 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 21:46:04 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/12 20:05:09 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,14 @@ t_data	*starton(void)
 	return (&data);
 }
 
-int	valid_syntax(char **input, t_data *data)
+int	valid_syntax(char *input, t_data *data)
 {
-	char	*tmp;
-
-	if (quotes(*input))
-		return (ft_printf("quote fail\n"), free(*input), 1);
-	if (syntax(*input))
-		return (ft_printf("syntax error\n"), free(*input), 1);
+	if (quotes(input))
+		return (ft_printf("quote fail\n"), free(input), 1);
+	if (syntax(input))
+		return (ft_printf("syntax error\n"), free(input), 1);
 	data->var_name = NULL;
 	data->var_value = NULL;
-	if (ft_strchr(*input, '$'))
-	{
-		tmp = *input;
-		*input = ft_expand(tmp, data);
-	}
 	return (0);
 }
 
@@ -57,7 +50,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	(void)argc;
 	(void)env;
-	data->env_copy = create_env(env);
+	data->env_copy = create_env(env, 0);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, &ctrlc);
 	while (1)
@@ -69,9 +62,10 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		add_history(input);
 		// yassine
-		negatif(input);
-		if (valid_syntax(&input, data))
+		if (valid_syntax(input, data))
 			continue ;
+		input = ft_expandd(input, data);
+		negatif(input);
 		input = parse_input(input);
 		if (!input)
 			exit(1);

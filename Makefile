@@ -6,7 +6,7 @@
 #    By: motroian <motroian@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/03 00:22:02 by maheraul          #+#    #+#              #
-#    Updated: 2023/08/11 23:31:58 by motroian         ###   ########.fr        #
+#    Updated: 2023/08/12 18:04:17 by motroian         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,9 @@ SRCS_NAMES		=	main.c \
 					parsing/strjoin.c \
 					parsing/utils_env_2.c \
 					parsing/utils_env.c \
-					parsing/valid.c
+					parsing/valid.c \
+					parsing/count_expand.c \
+					parsing/expand.c
 
 
 

@@ -6,7 +6,7 @@
 #    By: motroian <motroian@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 00:33:37 by maheraul          #+#    #+#              #
-#    Updated: 2023/08/11 21:12:44 by motroian         ###   ########.fr        #
+#    Updated: 2023/08/12 18:08:34 by motroian         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS = 		ft_isalpha.c\
 			ft_memcpy.c \
 			ft_memmove.c \
 			ft_strlcpy.c \
+			ft_strcat.c \
 			ft_strlcat.c \
 			ft_toupper.c \
 			ft_tolower.c \

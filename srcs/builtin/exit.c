@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:00:59 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 22:24:24 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/12 22:32:59 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	ft_is_num(char *str)
 	}
 	return (1);
 }
+
 void	error_message_exit(char *str)
 {
 	ft_printf("bash: exit: %s: numeric argument required\n", str);

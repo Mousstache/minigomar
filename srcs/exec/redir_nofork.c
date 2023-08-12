@@ -37,8 +37,7 @@ int	openfiles_nofork(t_data *data, t_cmd *cmd)
 		else if (tmp->type == 3)
 			fd = open(tmp->file, O_RDONLY);
 		else if (tmp->type == 4)
-			fd = 0; // quelpipe(data, data->docs, tmp->file);
-		fprintf(stderr, "FD = %i\n", fd);
+			fd = 0;
 		if (fd == -1)
 			return (invalid_fd_nofork(data, cmd, tmp->file));
 		if (tmp->type == 1 || tmp->type == 2)
@@ -51,6 +50,5 @@ int	openfiles_nofork(t_data *data, t_cmd *cmd)
 	}
 	for (int i = 0; i < data->nb_hd; i++)
 		close(data->docs[i].fd[0]);
-	// close_heredocs(data->docs, data->nb_hd);
 	return (0);
 }

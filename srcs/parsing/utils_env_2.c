@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 23:15:13 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/11 23:23:11 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/12 20:05:14 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	is_not_var_char(char c)
 	return (0);
 }
 
-char	**create_env(char **env)
+char	**create_env(char **env, int tofree)
 {
 	int		i;
 	char	**str;
@@ -67,5 +67,7 @@ char	**create_env(char **env)
 		str[i] = ft_strdup(env[i]);
 		i++;
 	}
+	if (tofree)
+		free_all(env);
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:51:52 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/11 23:40:06 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/12 20:29:31 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char **add2(t_data *env, char **tab,  int *k)
 		tab = malloc(sizeof(char *) * (count_string(env->env_copy) + 2));
 	return (tab);
 }
-
+	
 char	**add_variable(t_data *env)
 {
 	int		i;
@@ -105,30 +105,29 @@ int	ft_export(char **str, char ***env)
 	int		res;
 	t_data	envv;
 
-	i = 0;
-	j = 0;
 	k = -1;
+	if (!str[0])
+		return (0);
 	res = 0;
 	memset(&envv, 0, sizeof(t_data));
-	envv.env_copy = create_env(*env);
+	envv.env_copy = create_env(*env, 1);
 	while (str[++k])
 	{
+		j = 0;
+		i = 0;
 		envv.var_name = get_name_var(str[k]);
 		if (!char_var_correct(envv.var_name))
 		{
 			export_error(*str, "not a valid identifier");
-			free(envv.var_name);
 			res = 1;
 		}
 		else
 		{
-			i += count_between_quotes(str[k], '=');
-			envv.var_value = malloc(sizeof(char) * (ft_strlen(*str + i) + 1));
-			while (str[k][i])
-				envv.var_value[j++] = str[k][i++];
-			envv.var_value[j] = 0;
+			i = count_between_quotes(str[k], '=');
+			envv.var_value = strchr(str[k], '=');
 			*env = add_variable(&envv);
 		}
+		free(envv.var_name);
 	}
 	return (res);
 }

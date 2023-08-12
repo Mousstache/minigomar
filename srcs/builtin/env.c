@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 03:12:53 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 21:40:39 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/12 22:32:41 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,3 @@ int	ft_env(char **arg, char ***env)
 	}
 	return (0);
 }
-
-// int	main(int ac, char **av, char **env)
-// {
-// 	ft_env(ac, av, env);
-// }

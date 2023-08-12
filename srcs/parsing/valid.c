@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:41:40 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/11 23:22:47 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/12 19:59:21 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,11 @@ int	quotes(char *str)
 			if (str[i++] == c)
 				quote++;
 			while (str[i] && (str[i] != c))
-			{
-				if (str[i++] == c)
-					quote++;
-				else
-					break ;
-			}
+				i++;
+			if (str[i++] == c)
+				quote++;
+			else
+				break ;
 		}
 	}
 	return (quote % 2);

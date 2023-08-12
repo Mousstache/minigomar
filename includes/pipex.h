@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:25:39 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 23:33:31 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/12 20:05:33 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdarg.h>
-# include <stdio.h>
 # include <stdbool.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
 # include <sys/wait.h>
@@ -39,10 +39,10 @@ typedef struct t_doc
 
 typedef struct s_env
 {
-	char	**env_copy;
-	char	*var_name;
-	char	*var_value;
-}	t_env;
+	char			**env_copy;
+	char			*var_name;
+	char			*var_value;
+}					t_env;
 
 typedef struct t_list
 {
@@ -117,9 +117,11 @@ void				redirection(t_data *data, int index, t_cmd *cmd);
 void				invalid_fd(t_data *data, t_cmd *cmd, char *file);
 void				openfiles(t_data *data, t_cmd *cmd);
 void				close_heredocs(t_doc *doc, int limit);
-int	quelpipe(t_data *data, t_doc *doc, t_list *lst);
-
-
+int					quelpipe(t_data *data, t_doc *doc, t_list *lst);
+// expand
+int					count_expand(char *str, t_data *env);
+char				*ft_expandd(char *str, t_data *env);
+char				*expand_ok(char *str, t_data *env, int *clef);
 //parse input
 void				*parse_input(char *input);
 //fill_cmd_struct.c
@@ -143,7 +145,7 @@ int					ft_pwd(char **arg, char ***env);
 int					ft_cd(char **arg, char ***env);
 //env.c
 int					char_var_correct(char *str);
-int					ft_export( char **str, char ***env);
+int					ft_export(char **str, char ***env);
 int					ft_env(char **arg, char ***env);
 int					ft_unset(char **var, char ***env);
 //redirnofork
@@ -164,30 +166,28 @@ int					ft_is_num(char *str);
 //exit fork
 int					exit_fork(char **arg, char **env);
 int					exit_error(char **arg);
-
 void				dupclose(int fd[2]);
 
 // signaux
-void	ctrlc(int sig);
-void	slash(int sig);
+void				ctrlc(int sig);
+void				slash(int sig);
 
 /********************************/
 
-char	*ft_strjoin_quote(char *s1, char *s2, char c);
-char	*strjoin_value_var(char *str, int j, t_data *env);
-char	*get_value_var(t_data *env, int i);
-char	*ft_strjoin_btw_quote(char *s1, char *s2);
-int		check_var_exist(char **env, char *variable);
-int		count_var_len(char *str);
-int		count_between_quotes(char *str, char c);
-int		count_string(char **env);
-char	**create_env(char **env);
-int		count_quotes(char *str);
-int		quotes(char *str);
-char	*ft_expand(char *str, t_data *env);
-int		syntax(char *str);
-char	*negatif(char *str);
-char	*positif(char *str);
-char	*delete_quotes(char *str);
+char				*ft_strjoin_quote(char *s1, char *s2, char c);
+char				*strjoin_value_var(char *str, int j, t_data *env);
+char				*get_value_var(t_data *env, int i);
+char				*ft_strjoin_btw_quote(char *s1, char *s2);
+int					check_var_exist(char **env, char *variable);
+int					count_var_len(char *str);
+int					count_between_quotes(char *str, char c);
+int					count_string(char **env);
+char				**create_env(char **env, int tofree);
+int					count_quotes(char *str);
+int					quotes(char *str);
+int					syntax(char *str);
+char				*negatif(char *str);
+char				*positif(char *str);
+char				*delete_quotes(char *str);
 
 #endif

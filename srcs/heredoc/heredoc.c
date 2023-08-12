@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 21:15:00 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 23:22:02 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:00:55 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	pid_null(int *i, t_doc *doc, char *str, t_data *data)
 		free(doc[*i].del);
 		(*i)++;
 	}
-	free_arg(2, 0, 0, str, doc);
+	free_arg(2, 1, 0, str, doc, data->env_copy);
 	exit(0);
 }
 
