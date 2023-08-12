@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 22:40:06 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 23:43:58 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/12 22:39:58 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@ int	countarg(char **tab)
 	while (tab[i])
 	{
 		if (chevron_comp(tab[i]))
+		{
 			i++;
+			if (!tab[i])
+				return (-1);
+		}
 		else
 			size++;
 		i++;
@@ -60,7 +64,10 @@ t_cmd	*parse(char *str)
 	input = ft_split(str, " 	");
 	if (!input)
 		return (NULL);
-	cmds.arg = ft_calloc(sizeof(char *), countarg(input) + 1);
+	int len = countarg(input);
+	if (len == -1)
+		return (fprintf(stderr, "ambigous redirect\n"), &cmds);
+	cmds.arg = ft_calloc(sizeof(char *), len + 1);
 	if (!cmds.arg)
 		return (ft_freetab(input), NULL);
 	v = 0;
