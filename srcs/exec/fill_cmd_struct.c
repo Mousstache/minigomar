@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 22:40:06 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/14 00:21:56 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/25 20:22:06 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_list	*list_parse(char **input, t_list *lst, t_cmd *cmds)
 			i++;
 		}
 		else
-			cmds->arg[j++] = delete_quotes(positif(input[i]));
+			cmds->arg[j++] = positif(delete_quotes(input[i]));
 		i++;
 	}
 	return (lst);

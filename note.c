@@ -101,7 +101,7 @@ quit pas si :
 -exit 'num string'
 		bash: exit: too many arguments
 
-
+quit
 -exit 'string' '...'
 -exit -'string'
 -exit: 9223372036854775808 OU  arg = strcomp 7 , 8 ou + 19 chiffre

@@ -6,9 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:00:59 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/14 00:23:53 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/25 22:35:32 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "minishell.h"
 
 #include "minishell.h"
 
@@ -70,20 +72,20 @@ int	ft_exit_error(char **arg)
 	long long	tmp;
 
 	data = starton();
-	tmp = ft_atoi_max(arg[1]);
-	if (arg[2] && ft_is_num(arg[1]))
+	tmp = ft_atoi_max(arg[0]);
+	if (arg[1] && ft_is_num(arg[0]))
 	{
 		ft_printf("%s", "bash: exit: too many arguments\n");
 		return (0);
 	}
-	else if (arg[1] && !ft_is_num(arg[1]))
+	else if (arg[0] && !ft_is_num(arg[0]))
 	{
 		printf("exit\n");
-		ft_printf("bash: exit: %s: numeric argument required\n", arg[1]);
-		free_arg(0, 2, 1, data->onecmd->arg, data->tab, &data->onecmd->lst);
+		ft_printf("bash: exit: %s: numeric argument required\n", arg[0]);
+		free_arg(0, 3, 1, data->onecmd->arg, data->tab, data->env_copy, &data->onecmd->lst);
 		exit(2);
 	}
-	free_arg(0, 2, 1, data->onecmd->arg, data->tab, &data->onecmd->lst);
+	free_arg(0, 3, 1, data->onecmd->arg, data->tab, data->env_copy, &data->onecmd->lst);
 	exit((unsigned char)tmp);
 }
 
@@ -104,20 +106,22 @@ int	exit_one(char **arg)
 	t_data	*data;
 
 	data = starton();
-	if (!*arg || !arg[1])
+	if (!*arg || !arg[0])
 	{
 		dupclose(data->fddup);
 		free_arg(0, 3, 1, data->tab, data->env_copy, data->onecmd->arg,
 			&data->onecmd->lst);
+		printf("exit\n");
 		exit(0);
 	}
-	if (arg[1] && !ft_strcmp(arg[1], "--"))
+	if (arg[0] && !ft_strcmp(arg[0], "--"))
 	{
-		if (!arg[2])
+		if (!arg[1])
 		{
 			dupclose(data->fddup);
 			free_arg(0, 3, 1, data->tab, data->env_copy, data->onecmd->arg,
 				&data->onecmd->lst);
+			printf("exit\n");
 			exit(0);
 		}
 		else if (!ft_exit_error(arg + 1))

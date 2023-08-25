@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 00:59:43 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/14 00:13:57 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/25 19:56:32 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,17 @@ int	invalid_fd_nofork(t_data *data, t_cmd *cmd, char *file)
 	return (1);
 }
 
-void	file_open(int fd, t_list *tmp)
+int	file_open(int fd, t_list *tmp)
 {
 	if (tmp->type == 1)
-			fd = open(tmp->file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+		fd = open(tmp->file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	else if (tmp->type == 2)
 		fd = open(tmp->file, O_WRONLY | O_CREAT | O_APPEND, 0666);
 	else if (tmp->type == 3)
 		fd = open(tmp->file, O_RDONLY);
 	else if (tmp->type == 4)
 		fd = 0;
+	return(fd);
 }
 
 int	openfiles_nofork(t_data *data, t_cmd *cmd)
@@ -44,7 +45,7 @@ int	openfiles_nofork(t_data *data, t_cmd *cmd)
 	tmp = cmd->lst;
 	while (tmp)
 	{
-		file_open(fd, tmp);
+		fd = file_open(fd, tmp);
 		if (fd == -1)
 			return (invalid_fd_nofork(data, cmd, tmp->file));
 		if (tmp->type == 1 || tmp->type == 2)
