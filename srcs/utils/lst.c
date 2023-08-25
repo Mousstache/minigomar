@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lst.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maheraul <maheraul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 22:21:07 by maheraul          #+#    #+#             */
-/*   Updated: 2023/07/25 03:07:38 by maheraul         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:08:20 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 t_list	*ft_redirnew(char *file, int type, int index)
 {

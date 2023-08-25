@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 22:40:06 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/12 22:39:58 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:21:56 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 int	chevron_comp(char *str)
 {
@@ -47,30 +47,17 @@ int	countarg(char **tab)
 	return (size);
 }
 
-t_cmd	*parse(char *str)
+t_list	*list_parse(char **input, t_list *lst, t_cmd *cmds)
 {
-	static t_cmd	cmds = {0};
-	t_list			*lst;
-	char			**input;
-	int				j;
-	int				i;
-	int				v;
-	int				r;
+	int	i;
+	int	r;
+	int	v;
+	int	j;
 
-	
-	j = 0;
 	i = 0;
-	lst = 0;
-	input = ft_split(str, " 	");
-	if (!input)
-		return (NULL);
-	int len = countarg(input);
-	if (len == -1)
-		return (fprintf(stderr, "ambigous redirect\n"), &cmds);
-	cmds.arg = ft_calloc(sizeof(char *), len + 1);
-	if (!cmds.arg)
-		return (ft_freetab(input), NULL);
+	r = 0;
 	v = 0;
+	j = 0;
 	while (input[i])
 	{
 		r = chevron_comp(input[i]);
@@ -82,9 +69,30 @@ t_cmd	*parse(char *str)
 			i++;
 		}
 		else
-			cmds.arg[j++] = delete_quotes(positif(input[i]));
+			cmds->arg[j++] = delete_quotes(positif(input[i]));
 		i++;
 	}
+	return (lst);
+}
+
+t_cmd	*parse(char *str)
+{
+	static t_cmd	cmds = {0};
+	t_list			*lst;
+	char			**input;
+	int				len;
+
+	lst = 0;
+	input = ft_split(str, " 	");
+	if (!input)
+		return (NULL);
+	len = countarg(input);
+	if (len == -1)
+		return (fprintf(stderr, "ambigous redirect\n"), &cmds);
+	cmds.arg = ft_calloc(sizeof(char *), len + 1);
+	if (!cmds.arg)
+		return (ft_freetab(input), NULL);
+	lst = list_parse(input, lst, &cmds);
 	ft_freetab(input);
 	cmds.cmd = cmds.arg[0];
 	cmds.lst = lst;

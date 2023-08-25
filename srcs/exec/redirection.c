@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 02:49:45 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 23:33:55 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:07:04 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 void	invalid_fd(t_data *data, t_cmd *cmd, char *file)
 {

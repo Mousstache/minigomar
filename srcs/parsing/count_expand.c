@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 17:55:03 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/12 17:57:02 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:07:33 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 int	count_squote(char *str, int *i, int *n)
 {

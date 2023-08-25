@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 21:01:10 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 20:43:49 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:22:14 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 int	exit_error(char **arg)
 {
@@ -37,9 +37,9 @@ int	exit_error(char **arg)
 
 int	exit_fork(char **arg, char **env)
 {
-	(void)env;
-	t_data *data;
+	t_data	*data;
 
+	(void)env;
 	data = starton();
 	if (!*arg || !arg[1])
 	{

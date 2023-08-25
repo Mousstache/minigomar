@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 23:46:55 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/11 23:20:32 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:08:09 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 int	count_string(char **env)
 {

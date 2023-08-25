@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:09:30 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 23:19:46 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:07:12 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 void	*free_arg(int str, int tab, int lst, ...)
 {

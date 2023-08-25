@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:25:39 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/12 20:05:33 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 06:03:40 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef MINISHELL_H
+# define MINISHELL_H
 # include "ft_printf.h"
 # include "libft.h"
 # include <errno.h>
@@ -26,10 +26,6 @@
 # include <sys/wait.h>
 # define LL_MAX 9223372036854775807UL
 
-// > 1
-// >> 2
-// < 3
-// << 4
 typedef struct t_doc
 {
 	char			*del;
@@ -74,7 +70,6 @@ typedef struct t_data
 	char			**env;
 	t_cmd			*onecmd;
 	t_cmd			*cmds;
-
 	int				nb_hd;
 	t_doc			*docs;
 	char			**env_copy;
@@ -188,6 +183,8 @@ int					quotes(char *str);
 int					syntax(char *str);
 char				*negatif(char *str);
 char				*positif(char *str);
+char				*get_name_var(char *str);
 char				*delete_quotes(char *str);
+void				dupclose(int fd[2]);
 
 #endif

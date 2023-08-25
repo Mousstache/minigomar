@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 02:56:31 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 23:17:38 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:05:08 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 int	ft_cd(char **arg, char ***env)
 {

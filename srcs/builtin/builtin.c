@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 23:24:23 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 23:18:44 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:05:03 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 int	ft_is_builtin(t_cmd *cmd, char ***env)
 {

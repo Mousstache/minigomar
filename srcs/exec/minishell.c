@@ -6,11 +6,19 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 02:40:18 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 23:18:58 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:16:37 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
+
+void	dupclose(int fd[2])
+{
+	dup2(fd[0], STDOUT_FILENO);
+	dup2(fd[1], STDIN_FILENO);
+	close(fd[0]);
+	close(fd[1]);
+}
 
 int	ft_nofork(t_data *data, t_cmd *cmd, char ***env)
 {
@@ -19,7 +27,6 @@ int	ft_nofork(t_data *data, t_cmd *cmd, char ***env)
 	data->fddup[1] = dup(STDIN_FILENO);
 	if (!openfiles_nofork(data, cmd))
 	{
-		printf("JEXCUTE %s DANS NO FORK\n", cmd->cmd);
 		ft_is_builtin(cmd, env);
 		dupclose(data->fddup);
 		free_arg(0, 1, 1, data->onecmd->arg, &data->onecmd->lst);

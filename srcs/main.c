@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:37:45 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/12 20:05:09 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 01:54:40 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 int	init_struct(t_data *data, char **env)
 {
@@ -45,11 +45,11 @@ int	main(int argc, char **argv, char **env)
 {
 	t_data	*data;
 	char	*input;
+	int		i;
 
 	data = starton();
 	(void)argv;
 	(void)argc;
-	(void)env;
 	data->env_copy = create_env(env, 0);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, &ctrlc);
@@ -61,7 +61,6 @@ int	main(int argc, char **argv, char **env)
 		if (!*input)
 			continue ;
 		add_history(input);
-		// yassine
 		if (valid_syntax(input, data))
 			continue ;
 		input = ft_expandd(input, data);
@@ -77,7 +76,8 @@ int	main(int argc, char **argv, char **env)
 		if (init_struct(data, data->env_copy))
 			return (1);
 		ft_pipex(data, data->tab, &data->env_copy);
-		for (int i = 0; i < data->nb_hd; i++)
+		i = 0;
+		while (++i < data->nb_hd)
 		{
 			free(data->docs[i].del);
 			close(data->docs[i].fd[0]);

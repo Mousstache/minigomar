@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 22:46:31 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/12 22:31:19 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:07:59 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 char	*get_value_var(t_data *env, int i)
 {

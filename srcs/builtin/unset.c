@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:51:23 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/12 23:40:06 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:22:48 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 // int	ft_unset(char **var, char ***env)
 // {
@@ -66,12 +66,14 @@ int	ft_isinenv(char *cle, char **env)
 	}
 	return (-1);
 }
+
 int	ft_mallocunset(char **var, char ***env)
 {
-	int		i;
+	int	i;
+	int	len;
 
 	i = 0;
-	int len = 0;
+	len = 0;
 	while (var[i])
 	{
 		if (ft_isinenv(var[i], *env))
@@ -84,6 +86,7 @@ int	ft_mallocunset(char **var, char ***env)
 	}
 	return (len);
 }
+
 int	lenofenv(char **env)
 {
 	int	i;
@@ -93,7 +96,6 @@ int	lenofenv(char **env)
 		i++;
 	return (i);
 }
-
 
 char	**regenerate_ev(int len, int index, char **ev)
 {
@@ -121,8 +123,11 @@ char	**regenerate_ev(int len, int index, char **ev)
 
 int	ft_unset(char **var, char ***env)
 {
-	int i = 0;
-	int n = 0;
+	int	i;
+	int	n;
+
+	i = 0;
+	n = 0;
 	while (var[i])
 	{
 		n = ft_isinenv(var[i], *env);

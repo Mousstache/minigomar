@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 23:15:13 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/12 20:05:14 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:08:05 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 char	*delete_quotes(char *str)
 {

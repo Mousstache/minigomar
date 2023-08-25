@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:00:59 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/12 22:32:59 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:23:53 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 int	ft_is_num(char *str)
 {
@@ -30,10 +30,10 @@ int	ft_is_num(char *str)
 	return (1);
 }
 
-void	error_message_exit(char *str)
-{
-	ft_printf("bash: exit: %s: numeric argument required\n", str);
-}
+// void	error_message_exit(char *str)
+// {
+// 	ft_printf("bash: exit: %s: numeric argument required\n", str);
+// }
 
 long long	ft_atoi_max(char *str)
 {
@@ -57,7 +57,9 @@ long long	ft_atoi_max(char *str)
 		res = (res * 10) + (str[i] - '0');
 		i++;
 		if (res > LL_MAX || (res > (LL_MAX + 1) && neg == -1))
-			return (error_message_exit(str), 2);
+			return (
+				ft_printf("bash: exit: %s: numeric argument required\n", str),
+				2);
 	}
 	return ((long long)res * neg);
 }
@@ -97,14 +99,6 @@ int	ft_exit(char **arg, char ***env)
 	return (0);
 }
 
-void	dupclose(int fd[2])
-{
-	dup2(fd[0], STDOUT_FILENO);
-	dup2(fd[1], STDIN_FILENO);
-	close(fd[0]);
-	close(fd[1]);
-}
-
 int	exit_one(char **arg)
 {
 	t_data	*data;
@@ -114,7 +108,7 @@ int	exit_one(char **arg)
 	{
 		dupclose(data->fddup);
 		free_arg(0, 3, 1, data->tab, data->env_copy, data->onecmd->arg,
-				&data->onecmd->lst);
+			&data->onecmd->lst);
 		exit(0);
 	}
 	if (arg[1] && !ft_strcmp(arg[1], "--"))
@@ -123,7 +117,7 @@ int	exit_one(char **arg)
 		{
 			dupclose(data->fddup);
 			free_arg(0, 3, 1, data->tab, data->env_copy, data->onecmd->arg,
-					&data->onecmd->lst);
+				&data->onecmd->lst);
 			exit(0);
 		}
 		else if (!ft_exit_error(arg + 1))

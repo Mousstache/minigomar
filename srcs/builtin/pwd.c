@@ -6,12 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 02:02:35 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/08 20:12:25 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:10:17 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
+#include "minishell.h"
 #define BUFFER_SIZE 300
 
 int	ft_pwd(char **arg, char ***env)

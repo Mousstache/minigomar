@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:53:20 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/11 22:24:56 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 00:13:40 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 char	*write_path(char *cmd, t_data *data)
 {
@@ -67,7 +67,7 @@ int	get_cmd(t_data *data)
 	if (data->onecmd == NULL)
 	{
 		free_arg(1, 1, 0, data->pid, data->tab),
-			exit(1);
+		exit(1);
 	}
 	if (ft_is_builtin_vrmnt(data->onecmd->cmd))
 		return (1);

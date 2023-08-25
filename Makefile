@@ -6,7 +6,7 @@
 #    By: motroian <motroian@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/03 00:22:02 by maheraul          #+#    #+#              #
-#    Updated: 2023/08/12 18:04:17 by motroian         ###   ########.fr        #
+#    Updated: 2023/08/14 00:17:21 by motroian         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRCS_NAMES		=	main.c \
 					builtin/exit.c \
 					builtin/exit_fork.c\
 					exec/fill_cmd_struct.c \
-					exec/pipex.c \
+					exec/minishell.c \
 					exec/exec.c \
 					exec/redirection.c \
 					exec/redir_nofork.c \

@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:41:40 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/12 19:59:21 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 01:43:44 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 int	ft_norm2(int *i, char *str)
 {
@@ -37,8 +37,8 @@ int	syntax(char *str)
 	{
 		if (str[i + 1] == '\0')
 			if (ft_strchr("><|", str[i]) || ((str[i] == '<') && (str[i
-						+ 1] == '<')) || ((str[i] == '>') && (str[i
-						+ 1] == '>')))
+							+ 1] == '<')) || ((str[i] == '>') && (str[i
+							+ 1] == '>')))
 				return (1);
 		if (ft_norm2(&i, str))
 			return (1);
@@ -84,11 +84,19 @@ int	quotes(char *str)
 	return (quote % 2);
 }
 
+int	ft_norme(char *str, int *i, int c, int *quote)
+{
+	c = str[*i];
+	if (str[(*i)++] == c)
+		(*quote)++;
+	return (c);
+}
+
 char	*negatif(char *str)
 {
-	int i;
-	int quote;
-	char c;
+	int		i;
+	int		quote;
+	char	c;
 
 	i = 0;
 	quote = 0;

@@ -6,11 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 17:54:44 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/12 22:27:18 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 01:39:13 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 
 void	ft_strcat(char *dst, const char *src, int *n)

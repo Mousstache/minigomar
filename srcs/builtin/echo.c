@@ -6,13 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 00:36:11 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/08 22:40:20 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/14 01:46:30 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-#include <stdio.h>
-#include <unistd.h>
+#include "minishell.h"
 
 int	ft_check_n(char *str)
 {
@@ -39,6 +37,7 @@ int	ft_echo(char **arg, char ***env)
 	(void)env;
 	i = 0;
 	n = 0;
+	printf("%s\n", arg[0]);
 	if (arg[i])
 	{
 		while (!ft_check_n(arg[i]))
