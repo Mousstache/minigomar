@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:51:23 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/14 00:22:48 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/26 18:47:34 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,3 @@ int	ft_unset(char **var, char ***env)
 	}
 	return (0);
 }
-
-// {unset, lol, blabla}
-// unset LS_COLORS LS_COLORS

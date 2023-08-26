@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 00:36:11 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/25 21:53:27 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/26 18:47:47 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	ft_echo(char **arg, char ***env)
 	(void)env;
 	i = 0;
 	n = 0;
-	printf("%s\n", arg[0]);
 	if (arg[i])
 	{
 		while (arg[i] && !ft_check_n(arg[i]))

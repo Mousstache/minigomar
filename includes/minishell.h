@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:25:39 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/14 06:03:40 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/26 21:38:10 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct t_cmd
 
 typedef struct t_data
 {
+	char			fakeitoa[5];
 	int				nbcmd;
 	int				status;
 	char			**path;
