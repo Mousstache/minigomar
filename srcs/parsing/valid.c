@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:41:40 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/14 01:43:44 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/27 19:42:21 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,17 +107,26 @@ char	*negatif(char *str)
 		if (str[i] && (str[i] == 39 || str[i] == 34))
 		{
 			c = str[i];
-			if (str[i++] == c)
-				quote++;
-			while (str[i] && (str[i] != c))
-				str[i++] *= -1;
-			while (str[i] && (str[i] != c))
+			i++;
+			while (str[i] && str[i] != c)
 			{
-				if (str[i++] == c)
-					quote++;
-				else
-					break ;
+				str[i] *= -1;
+				i++;
 			}
+			if (str[i] == c)
+				i++;
+			// c = str[i];
+			// if (str[i++] == c)
+			// 	quote++;
+			// while (str[i] && (str[i] != c))
+			// 	str[i++] *= -1;
+			// while (str[i] && (str[i] != c))
+			// {
+			// 	if (str[i++] == c)
+			// 		quote++;
+			// 	else
+			// 		break ;
+			// }
 		}
 	}
 	return (str);

@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:53:20 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/14 00:13:40 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/27 16:38:47 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	*execute(t_data *data, t_cmd *cmd, char ***env)
 
 int	get_cmd(t_data *data)
 {
-	data->onecmd = parse(data->tab[0]);
+	data->onecmd = parse_builtin(data->tab[0]);
 	if (data->onecmd == NULL)
 	{
 		free_arg(1, 1, 0, data->pid, data->tab),

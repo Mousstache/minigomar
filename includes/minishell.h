@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:25:39 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/26 21:38:10 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/27 16:39:38 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct t_var
 typedef int			(*t_builtin)(char **arg, char ***env);
 
 t_data				*starton(void);
+t_cmd				*parse_builtin(char *str);
 int					ft_strlen_total(char const *str, char *sep);
 
 //utils

@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:00:59 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/25 22:35:32 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/27 16:25:43 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	ft_exit_error(char **arg)
 	tmp = ft_atoi_max(arg[0]);
 	if (arg[1] && ft_is_num(arg[0]))
 	{
+		ft_printf("exit\n");
 		ft_printf("%s", "bash: exit: too many arguments\n");
 		return (0);
 	}
@@ -86,6 +87,7 @@ int	ft_exit_error(char **arg)
 		exit(2);
 	}
 	free_arg(0, 3, 1, data->onecmd->arg, data->tab, data->env_copy, &data->onecmd->lst);
+	printf("exit\n");
 	exit((unsigned char)tmp);
 }
 

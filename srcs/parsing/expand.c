@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 17:54:44 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/26 21:47:53 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/27 20:46:12 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ char	*expand_ok(char *str, t_data *env, int *clef)
 	if (str[0] == '?')
 	{
 		*clef += 1;
+		// fprintf(stderr, "STATUS = %i\n", env->status);
 		fakeitoa(env->fakeitoa, env->status);
 		return (env->fakeitoa);
 	}
@@ -95,9 +96,7 @@ char	*expand_ok(char *str, t_data *env, int *clef)
 	while (env->env_copy[y])
 	{
 		if (!ft_strncmp(str, env->env_copy[y], i) && env->env_copy[y][i] == '=')
-		{
 			return (&env->env_copy[y][i + 1]);
-		}
 		y++;
 	}
 	return (NULL);
@@ -124,6 +123,8 @@ char	*ft_expandd(char *str, t_data *env)
 	int		n;
 
 	new = ft_calloc(count_expand(str, env) + 1, 1);
+	if (!new)
+		return (NULL);
 	i = 0;
 	n = 0;
 	while (str && str[i])

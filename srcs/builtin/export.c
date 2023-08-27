@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:51:52 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/14 01:09:22 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/27 20:50:55 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ int	norme_export(char **str, t_data *envv, char ***env, int res)
 		envv->var_name = get_name_var(str[k]);
 		if (!char_var_correct(envv->var_name))
 		{
-			export_error(*str, "not a valid identifier");
+			export_error(str[k], "not a valid identifier");
 			res = 1;
 		}
 		else
 		{
 			i = count_between_quotes(str[k], '=');
-			envv->var_value = strchr(str[k], '=');
+			envv->var_value = ft_strchr(str[k], '=');
 			*env = add_variable(envv);
 		}
 		free(envv->var_name);

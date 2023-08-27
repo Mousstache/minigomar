@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 22:40:06 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/25 20:22:06 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/27 18:38:26 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,30 @@ t_list	*list_parse(char **input, t_list *lst, t_cmd *cmds)
 	return (lst);
 }
 
+t_cmd	*parse_builtin(char *str)
+{
+	static t_cmd	cmds = {0};
+	t_list			*lst;
+	char			**input;
+	int				len;
+
+	lst = 0;
+	input = ft_split(str, " 	");
+	if (!input)
+		return (NULL);
+	len = countarg(input);
+	if (len == -1)
+		return (ft_freetab(input), &cmds);
+	cmds.arg = ft_calloc(sizeof(char *), len + 1);
+	if (!cmds.arg)
+		return (ft_freetab(input), NULL);
+	lst = list_parse(input, lst, &cmds);
+	ft_freetab(input);
+	cmds.cmd = cmds.arg[0];
+	cmds.lst = lst;
+	return (&cmds);
+}
+
 t_cmd	*parse(char *str)
 {
 	static t_cmd	cmds = {0};
@@ -88,7 +112,7 @@ t_cmd	*parse(char *str)
 		return (NULL);
 	len = countarg(input);
 	if (len == -1)
-		return (fprintf(stderr, "ambigous redirect\n"), &cmds);
+		return (ft_freetab(input), fprintf(stderr, "ambigous redirect\n"), &cmds);
 	cmds.arg = ft_calloc(sizeof(char *), len + 1);
 	if (!cmds.arg)
 		return (ft_freetab(input), NULL);
