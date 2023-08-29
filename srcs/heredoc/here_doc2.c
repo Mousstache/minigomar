@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 23:21:07 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/14 00:07:19 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:11:56 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static void	exit_hd(int sig)
 		i = -1;
 		while (++i < data->nb_hd)
 		{
-			close(data->docs->fd[1]);
-			close(data->docs->fd[0]);
-			if (data->docs->del != NULL)
-				free(data->docs->del);
+			close(data->docs[i].fd[1]);
+			close(data->docs[i].fd[0]);
+			if (data->docs[i].del != NULL)
+				free(data->docs[i].del);
 		}
 		free(data->docs);
 		data->stop = true;

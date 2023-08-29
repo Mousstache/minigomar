@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:51:23 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/27 20:58:36 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/29 20:26:13 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	ft_unset(char **var, char ***env)
 	int	n;
 
 	i = 0;
-	n = 0;
 	while (var[i])
 	{
 		n = ft_isinenv(var[i], *env);

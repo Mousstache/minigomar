@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:37:45 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/28 22:26:24 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:49:11 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,12 @@ int	main(int argc, char **argv, char **env)
 			exit(1);
 		if (here_doc(data, input))
 			return (1);
+		// negatif(input);
+		printf("%s\n", input);
+		printf("nbcmd %d\n", data->nbcmd);
 		data->tab = ft_split(input, "|");
 		data->nbcmd = ft_strlen_total(input, "|");
+		// positif(input);
 		free(input);
 		if (init_struct(data, data->env_copy))
 			return (1);

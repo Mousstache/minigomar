@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:41:40 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/28 22:10:58 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/29 20:26:05 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,9 @@ int	ft_norme(char *str, int *i, int c, int *quote)
 char	*negatif(char *str)
 {
 	int		i;
-	int		quote;
 	char	c;
 
 	i = 0;
-	quote = 0;
 	while (str[i])
 	{
 		while (str[i] && str[i] != 39 && str[i] != 34)
@@ -115,18 +113,6 @@ char	*negatif(char *str)
 			}
 			if (str[i] == c)
 				i++;
-			// c = str[i];
-			// if (str[i++] == c)
-			// 	quote++;
-			// while (str[i] && (str[i] != c))
-			// 	str[i++] *= -1;
-			// while (str[i] && (str[i] != c))
-			// {
-			// 	if (str[i++] == c)
-			// 		quote++;
-			// 	else
-			// 		break ;
-			// }
 		}
 	}
 	return (str);

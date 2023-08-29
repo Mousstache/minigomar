@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 22:40:06 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/27 18:38:26 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/29 20:26:53 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ t_list	*list_parse(char **input, t_list *lst, t_cmd *cmds)
 	int	j;
 
 	i = 0;
-	r = 0;
 	v = 0;
 	j = 0;
 	while (input[i])

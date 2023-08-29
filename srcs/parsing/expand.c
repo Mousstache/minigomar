@@ -6,12 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 17:54:44 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/28 20:23:21 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/29 20:24:13 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 void	ft_strcat(char *dst, const char *src, int *n)
 {
@@ -39,66 +38,46 @@ int	alphanum(char c)
 	return (1);
 }
 
-int	lenof(int val)
-{
-	int i = 0;
-	while (val > 0)
-	{
-		val /= 10;
-		i++;
-	}
-	return (i);
-}
-
-void	fakeitoa(char str[5], int n)
-{
-	int				len;
-	unsigned int	nb;
-
-	nb = n;
-	if (n == 0)
-	{
-		str[0] = '0';
-		str[1] = 0;
-		return ;
-	}
-	len = lenof(n);
-	str[len] = 0;
-	while (--len >= 0)
-	{
-		str[len] = (nb % 10) + '0';
-		nb /= 10;
-	}
-}
-
 char	*expand_ok(char *str, t_data *env, int *clef)
 {
-	int	i;
-	int	y;
+	int		i;
+	int		y;
 
 	i = 0;
 	y = 0;
 	if (str[0] && ft_isdigit(str[0]))
 		return (*clef += 1, NULL);
 	if (str[0] && alphanum(str[0]) && str[0] != '?')
-		return ("$");
+		return (ft_strdup("$"));
 	if (str[0] == '?')
-	{
-		*clef += 1;
-		// fprintf(stderr, "STATUS = %i\n", env->status);
-		fakeitoa(env->fakeitoa, (unsigned char)env->status);
-		return (env->fakeitoa);
-	}
+		return (*clef += 1, ft_itoa(env->status));
 	while (str && str[i] && !alphanum(str[i]))
 		i++;
 	*clef += i;
 	while (env->env_copy[y])
 	{
 		if (!ft_strncmp(str, env->env_copy[y], i) && env->env_copy[y][i] == '=')
-			return (&env->env_copy[y][i + 1]);
+			return (ft_strdup(&env->env_copy[y][i + 1]));
 		y++;
 	}
 	return (NULL);
+}
+int	is_heredoc(char *str, char *new, int *i, int *n)
+{
+	int x;
+
+	x = *i;
+	if (str[x] && str[x + 1] && str[x] == '<' && str[x + 1] == '<')
+	{
+		new[(*n)++] = str[(*i)++];
+		new[(*n)++] = str[(*i)++];
+		while (str[(*i)] && str[(*i)] == ' ')
+			new[(*n)++] = str[(*i)++];
+		while (str[(*i)] && str[(*i)] != ' ')
+			new[(*n)++] = str[(*i)++];
+		return(1);
+	}
+	return(0);
 }
 
 int	copy_squote(char *str, char *new, int *i, int *n)
@@ -112,6 +91,14 @@ int	copy_squote(char *str, char *new, int *i, int *n)
 		return (1);
 	}
 	return (0);
+}
+
+char	*mgamiloueee(char *str)
+{
+	int i = 0;
+	while (str && str[i])
+		str[i++] *= -1;
+	return (str);
 }
 
 char	*ft_expandd(char *str, t_data *env)
@@ -128,14 +115,17 @@ char	*ft_expandd(char *str, t_data *env)
 	n = 0;
 	while (str && str[i])
 	{
-		if (copy_squote(str, new, &i, &n))
+		if (copy_squote(str, new, &i, &n) || is_heredoc(str, new,&i, &n ))
 			;
 		else if (str[i] == '$' && str[i + 1])
 		{
 			i++;
 			value = expand_ok(&str[i], env, &i);
 			if (value)
-				ft_strcat(&new[n], value, &n);
+			{
+				ft_strcat(&new[n], mgamiloueee(value), &n);
+				free(value);
+			}
 		}
 		else
 			new[n++] = str[i++];

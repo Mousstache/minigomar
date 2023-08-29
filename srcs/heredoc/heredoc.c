@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 21:15:00 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/28 19:55:09 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:29:56 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,16 +107,16 @@ bool	here_doc(t_data *data, char *str)
 	if (!doc)
 		return (true);
 	del_is(doc, str);
-	pid = fork();
 	signal(SIGINT, SIG_IGN);
+	pid = fork();
 	i = 0;
 	if (pid == 0)
 		pid_null(&i, doc, str, data);
 	else if (pid > 0)
 		while (i < data->nb_hd)
 			close(doc[i++].fd[1]);
-	waitpid(pid, 0, 0);
 	signal(SIGINT, &ctrlc);
+	waitpid(pid, 0, 0);
 	data->docs = doc;
 	return (data->stop);
 }

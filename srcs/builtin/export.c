@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:51:52 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/28 22:17:19 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/29 20:26:25 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,11 @@ int	export_error(char *str, char *msg)
 
 int	norme_export(char **str, t_data *envv, char ***env, int res)
 {
-	int		i;
-	int		j;
 	int		k;
 
 	k = -1;
 	while (str[++k])
 	{
-		j = 0;
-		i = 0;
 		envv->var_name = get_name_var(str[k]);
 		if (!char_var_correct(envv->var_name))
 		{
@@ -88,7 +84,6 @@ int	norme_export(char **str, t_data *envv, char ***env, int res)
 		}
 		else
 		{
-			i = count_between_quotes(str[k], '=');
 			envv->var_value = ft_strchr(str[k], '=');
 			*env = add_variable(envv, *env);
 		}
