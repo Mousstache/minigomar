@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 02:40:18 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/27 20:40:10 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/28 23:28:21 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,23 @@
 void	dupclose(int fd[2])
 {
 	dup2(fd[0], STDOUT_FILENO);
-	dup2(fd[1], STDIN_FILENO);
 	close(fd[0]);
+	dup2(fd[1], STDIN_FILENO);
 	close(fd[1]);
 }
 
 int	ft_nofork(t_data *data, t_cmd *cmd, char ***env)
 {
+	int	i;
+
+	i = 0;
 	free(data->pid);
 	data->fddup[0] = dup(STDOUT_FILENO);
 	data->fddup[1] = dup(STDIN_FILENO);
 	if (!openfiles_nofork(data, cmd))
 	{
+		while (cmd->arg[i])
+			positif(cmd->arg[i++]);
 		data->status = ft_is_builtin(cmd, env);
 		dupclose(data->fddup);
 		free_arg(0, 1, 1, data->onecmd->arg, &data->onecmd->lst);
@@ -53,10 +58,15 @@ void	ft_enfant(t_data *data, char **argv, int i, char ***env)
 		exit(1);
 	}
 	redirection(data, i, cmd);
-	if (cmd->cmd && !ft_is_builtin(cmd, env))
+	if (cmd->cmd && ft_is_builtin_vrmnt(cmd->cmd))
+		data->status = ft_is_builtin(cmd, env);
+	else
+	{
 		execute(data, cmd, env);
+		data->status = 127;
+	}
 	free_arg(0, 3, 1, data->env_copy, cmd->arg, data->tab, &cmd->lst);
-	exit(127);
+	exit(data->status);
 }
 
 void	ft_parent(t_data *data, int i)

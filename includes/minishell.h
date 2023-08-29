@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:25:39 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/27 16:39:38 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/28 23:04:25 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/time.h>
 # include <sys/wait.h>
 # define LL_MAX 9223372036854775807UL
+# define LL_MIN -9223372036854775807
 
 typedef struct t_doc
 {

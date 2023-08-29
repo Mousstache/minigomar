@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 17:54:44 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/27 20:46:12 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/28 20:23:21 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void	fakeitoa(char str[5], int n)
 		return ;
 	}
 	len = lenof(n);
-	// strcpy(str, "avio");
-	printf("{{{%i}}[%i]}\n", len, n);
 	str[len] = 0;
 	while (--len >= 0)
 	{
@@ -72,6 +70,7 @@ void	fakeitoa(char str[5], int n)
 		nb /= 10;
 	}
 }
+
 char	*expand_ok(char *str, t_data *env, int *clef)
 {
 	int	i;
@@ -87,7 +86,7 @@ char	*expand_ok(char *str, t_data *env, int *clef)
 	{
 		*clef += 1;
 		// fprintf(stderr, "STATUS = %i\n", env->status);
-		fakeitoa(env->fakeitoa, env->status);
+		fakeitoa(env->fakeitoa, (unsigned char)env->status);
 		return (env->fakeitoa);
 	}
 	while (str && str[i] && !alphanum(str[i]))

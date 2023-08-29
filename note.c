@@ -113,3 +113,10 @@ tu print les messages
 reviens dans le builtin exit
 free
 exit
+
+args[i] = "PATH=/bin/"
+char *delimiter = strchr("PATH=/bin/", '=');
+	delimiter = '=/bin/'
+char *name = args[i] = "PATH"
+char *value = delimiter + 1;
+	value = "/bin/"

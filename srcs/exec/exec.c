@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:53:20 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/27 16:38:47 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/28 22:54:26 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	*execute(t_data *data, t_cmd *cmd, char ***env)
 		}
 	}
 	if (errno == 13)
-		ft_printf("%s: permission denied\n", cmd->cmd);
+		ft_printf("%s: Permission denied\n", cmd->cmd);
 	else if (cmd->cmd && ft_strchr(cmd->cmd, '/'))
-		ft_printf("%s: no such file or directory \n", cmd->cmd);
+		ft_printf("%s: No such file or directory\n", cmd->cmd);
 	else
 		error_cmd(cmd->cmd);
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 22:57:02 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/14 01:08:26 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/28 22:20:31 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	*get_name_var(char *str)
 
 	i = 0;
 	j = 0;
+	if (str[0] == '=')
+		return (ft_strdup("-"));
 	while (str[i] != '=' && str[i])
 	{
 		if (count_between_quotes(str + i, '=') > count_between_quotes(str + i,

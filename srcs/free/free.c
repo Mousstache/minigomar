@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:09:30 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/27 20:38:09 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/28 20:19:26 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	*free_pipex(t_data *data)
 		if (data->status == 131 && !var++)
 			ft_printf("Quit (core dumped)\n");
 	}
-	printf("JAI ACCES AU WAITPID %i\n", data->status);
+	// printf("JAI ACCES AU WAITPID %i\n", data->status);
 	free(data->pid);
 	close(data->fd[0]);
 	return (NULL);

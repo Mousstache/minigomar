@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:41:40 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/27 19:42:21 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/28 22:10:58 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	syntax(char *str)
 				return (1);
 		if (ft_norm2(&i, str))
 			return (1);
-		if ((str[i] == '>') || (str[i] == '<') || (str[i] == '|'))
+		if ((str[i] == '>') || (str[i] == '<'))
 		{
 			i++;
 			while (str[i] && (str[i] == ' ' || str[i] == '	'))

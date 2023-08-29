@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 21:15:00 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/27 21:11:07 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/28 19:55:09 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*del_is(t_doc *doc, char *str)
 
 			doc[n].index = n;
 			doc[n].del = next_word(&str[i + 2]);
-			fprintf(stderr, "IN FORK [%s]{%p}\n", doc[n].del, doc[n].del);
+			// fprintf(stderr, "IN FORK [%s]{%p}\n", doc[n].del, doc[n].del);
 			pipe(doc[n].fd);
 			n++;
 		}

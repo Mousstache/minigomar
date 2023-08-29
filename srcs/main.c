@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:37:45 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/27 21:17:45 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/28 22:26:24 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,19 @@ int	valid_syntax(char *input, t_data *data)
 {
 	if (quotes(input))
 		return (ft_printf("quote fail\n"), free(input), 1);
-	// if (syntax(input))
-	// 	return (ft_printf("syntax error\n"), free(input), 1);
+	if (syntax(input))
+		return (ft_printf("syntax error\n"), free(input), 1);
 	data->var_name = NULL;
 	data->var_value = NULL;
 	return (0);
 }
 
-char *posquote(char *input)
+char	*posquote(char *input)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (input[i])
+	while (input && input[i])
 	{
 		if (input[i] == 34)
 		{
@@ -56,6 +56,18 @@ char *posquote(char *input)
 				if (input[i] == 39)
 					input[i] *= -1;
 				else if (input[i] == -39)
+					input[i] *= -1;
+				i++;
+			}
+		}
+		else if (input[i] == 39)
+		{
+			i++;
+			while (input[i] && input[i] != 39)
+			{
+				if (input[i] == 34)
+					input[i] *= -1;
+				else if (input[i] == -34)
 					input[i] *= -1;
 				i++;
 			}
@@ -85,11 +97,18 @@ int	main(int argc, char **argv, char **env)
 		if (!*input)
 			continue ;
 		add_history(input);
+		negatif(input);
 		if (valid_syntax(input, data))
 			continue ;
+		positif(input);
 		input = parse_input(input);
 		input = posquote(input);
 		input = ft_expandd(input, data);
+		if (!*input)
+		{
+			free(input);
+			continue ;
+		}
 		input = posquote(input);
 		negatif(input);
 		if (!input)
@@ -107,11 +126,11 @@ int	main(int argc, char **argv, char **env)
 		{
 			free(data->docs[i].del);
 			close(data->docs[i].fd[0]);
- 		}
+		}
 		if (data->nb_hd)
 			free(data->docs);
 		ft_free_tab(data->tab);
-		fprintf(stderr, "STATUS FIN DE OBOUCLE = %i\n", data->status);
+		// fprintf(stderr, "STATUS FIN DE OBOUCLE = %i\n", data->status);
 	}
 	ft_free_tab(data->env_copy);
 	return (0);

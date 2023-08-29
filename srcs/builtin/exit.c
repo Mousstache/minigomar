@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:00:59 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/27 16:25:43 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/28 22:53:02 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_is_num(char *str)
 	int	i;
 
 	i = 0;
-	if (str[0] == '-')
+	if (str[0] == '-' || str[0] == '+')
 		i++;
 	if (!str[i])
 		return (0);
@@ -50,15 +50,16 @@ long long	ft_atoi_max(char *str)
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{
-		neg *= -1;
 		if (str[i] == '-')
-			i++;
+			neg *= -1;
+		// if (str[i] == '-')
+		i++;
 	}
 	while (ft_isdigit(str[i]))
 	{
 		res = (res * 10) + (str[i] - '0');
 		i++;
-		if (res > LL_MAX || (res > (LL_MAX + 1) && neg == -1))
+		if (res > LL_MAX || (res > (LL_MAX + 1) && neg == -1))// || (long long)(res * neg) < LL_MIN)
 			return (
 				ft_printf("bash: exit: %s: numeric argument required\n", str),
 				2);
@@ -75,9 +76,9 @@ int	ft_exit_error(char **arg)
 	tmp = ft_atoi_max(arg[0]);
 	if (arg[1] && ft_is_num(arg[0]))
 	{
-		ft_printf("exit\n");
+		printf("exit\n");
 		ft_printf("%s", "bash: exit: too many arguments\n");
-		return (0);
+		return (1);
 	}
 	else if (arg[0] && !ft_is_num(arg[0]))
 	{
@@ -130,6 +131,5 @@ int	exit_one(char **arg)
 			return (0);
 	}
 	dupclose(data->fddup);
-	ft_exit_error(arg);
-	return (0);
+	return (ft_exit_error(arg));
 }

@@ -6,22 +6,23 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:51:52 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/27 20:50:55 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/28 22:17:19 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**add2(t_data *env, char **tab, int *k)
+char	**add2(char **env, char **tab, int *k)
 {
 	if ((*k) > -1)
-		tab = malloc(sizeof(char *) * (count_string(env->env_copy) + 1));
+		tab = malloc(sizeof(char *) * (count_string(env) + 1));
 	else
-		tab = malloc(sizeof(char *) * (count_string(env->env_copy) + 2));
+		tab = malloc(sizeof(char *) * (count_string(env) + 2));
+	// printf("nombre = %d\n", count_string(env));
 	return (tab);
 }
 
-char	**add_variable(t_data *env)
+char	**add_variable(t_data *env, char **envv)
 {
 	int		i;
 	int		j;
@@ -31,23 +32,23 @@ char	**add_variable(t_data *env)
 	i = -1;
 	j = 0;
 	tab = NULL;
-	k = check_var_exist(env->env_copy, env->var_name);
+	k = check_var_exist(envv, env->var_name);
 	if (!env->var_name)
-		return (env->env_copy);
-	tab = add2(env, tab, &k);
-	while (env->env_copy[++i])
+		return (envv);
+	tab = add2(envv, tab, &k);
+	while (envv[++i])
 	{
 		if (k == i)
 			tab[j++] = ft_strjoin(env->var_name, env->var_value);
 		else
-			tab[j++] = ft_strdup(env->env_copy[i]);
+			tab[j++] = ft_strdup(envv[i]);
 	}
 	if (k == -1)
 		tab[j++] = ft_strjoin(env->var_name, env->var_value);
 	tab[j] = NULL;
-	free_all(env->env_copy);
-	env->env_copy = tab;
-	return (env->env_copy);
+	free_all(envv);
+	// env->env_copy = tab;
+	return (tab);
 }
 
 int	export_error(char *str, char *msg)
@@ -89,7 +90,7 @@ int	norme_export(char **str, t_data *envv, char ***env, int res)
 		{
 			i = count_between_quotes(str[k], '=');
 			envv->var_value = ft_strchr(str[k], '=');
-			*env = add_variable(envv);
+			*env = add_variable(envv, *env);
 		}
 		free(envv->var_name);
 	}
@@ -104,8 +105,16 @@ int	ft_export(char **str, char ***env)
 	if (!str[0])
 		return (0);
 	res = 0;
+	// int i = 0;
+	// while (*env[i])
+	// {
+	// 	printf("%s\n", *env[i]);
+	// 	i++;
+	// }
+	// printf("vlavlavla %s\n", *env[0]);
 	ft_memset(&envv, 0, sizeof(t_data));
-	envv.env_copy = create_env(*env, 1);
+	// envv.env_copy = create_env(*env, 1);
 	res = norme_export(str, &envv, env, res);
+	// free_all(envv.env_copy);
 	return (res);
 }
