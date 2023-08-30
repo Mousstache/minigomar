@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 22:40:06 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/30 18:32:43 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:18:30 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ t_list	*list_parse(char **input, t_list *lst, t_cmd *cmds)
 		r = chevron_comp(input[i]);
 		if (r)
 		{
-			ft_rediradd_back(&lst, ft_redirnew(ft_strdup(input[i + 1]), r, v));
+			ft_rediradd_back(&lst,
+				ft_redirnew(positif(delete_quotes(((input[i + 1])))), r, v));
 			if (r == 4)
 				v++;
 			i++;

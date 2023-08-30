@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:25:39 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/30 18:34:26 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:33:09 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void				printtab(char **tab);
 void				printstruct(t_cmd *cmds);
 void				error_cmd(char *cmd);
 int					alphanum(char c);
-void				ft_strcat(char *dst, const char *src, int *n);
+void				ft_strcat(char *dst, char *src, int *n);
 char				*mgamiloueee(char *str);
 //main.c
 char				**path_recup(char **env);
@@ -194,7 +194,7 @@ int					count_string(char **env);
 char				**create_env(char **env, int tofree);
 int					count_quotes(char *str);
 int					quotes(char *str);
-int					syntax(char *str);
+int					syntax(char *s);
 char				*negatif(char *str);
 char				*positif(char *str);
 char				*get_name_var(char *str);

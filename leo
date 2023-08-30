@@ -1,0 +1,14 @@
+a
+c
+includes
+leo
+libft.a
+libftprintf.a
+libs
+Makefile
+minishell
+minishell_tester
+note.c
+objs
+srcs
+supp.txt

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_nofork.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maheraul <maheraul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 00:59:43 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/29 22:21:38 by maheraul         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:44:43 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	invalid_fd_nofork(t_data *data, t_cmd *cmd, char *file)
 	(void)cmd;
 	ft_printf("bash: %s: ", file);
 	perror("");
+	data->status = 1;
 	return (1);
 }
 

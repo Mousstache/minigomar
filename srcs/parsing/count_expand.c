@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_expand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maheraul <maheraul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 17:55:03 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/29 22:19:29 by maheraul         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:29:31 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ int	count_is_heredoc(char *str, int *i, int *n)
 	x = *i;
 	if (str[x] && str[x + 1] && str[x] == '<' && str[x + 1] == '<')
 	{
-		(*i)++;
-		(*i)++;
-		(*n)++;
-		(*n)++;
+		(*i) += 2;
+		(*n) += 2;
 		while (str[(*i)] && str[(*i)] != ' ')
 		{
 			(*n)++;
@@ -67,7 +65,7 @@ int	count_expand(char *str, t_data *env)
 	while (str && str[i])
 	{
 		if (count_squote(str, &i, &n) || count_is_heredoc(str, &i, &n))
-			;
+			continue ;
 		else if (str[i] == '$' && str[i + 1])
 		{
 			i++;
@@ -77,12 +75,10 @@ int	count_expand(char *str, t_data *env)
 				n += ft_strlen(value);
 				free(value);
 			}
+			continue ;
 		}
-		else
-		{
-			n++;
-			i++;
-		}
+		n++;
+		i++;
 	}
 	return (n);
 }

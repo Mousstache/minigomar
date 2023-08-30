@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 17:54:44 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/30 18:30:05 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:35:05 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	copy_squote(char *str, char *new, int *i, int *n)
 	return (0);
 }
 
-char	*nouvelle_str_un_espace(char *str);
+// char	*nouvelle_str_un_espace(char *str);
 
 char	*ft_expandd(char *str, t_data *env)
 {
@@ -85,114 +85,100 @@ char	*ft_expandd(char *str, t_data *env)
 	while (str && str[i])
 	{
 		if (copy_squote(str, new, &i, &n) || is_heredoc(str, new, &i, &n))
-			;
+			continue ;
 		else if (str[i] == '$' && str[i + 1])
 		{
 			i++;
 			value = expand_ok(&str[i], env, &i);
-			// if (i - 3 >= 0 && str[i - 3] != '\"')
-			// {
-			// 	printf("str %s\n", str);
-			// 	printf("\n\n\n\n%c\n",str[i - 3]);
-			// 	printf("oueee\n");
-			// 	value = nouvelle_str_un_espace(value);
-			// }
 			if (value)
-			{
 				ft_strcat(&new[n], mgamiloueee(value), &n);
-				printf("la value ==== %s\n", new);
-				free(value);
-			}
+			continue ;
 		}
-		else
-			new[n++] = str[i++];
+		new[n++] = str[i++];
 	}
-	free(str);
-	return (new);
+	return (free(str), new);
 }
-
-
 /*
 Si j'ai ca if (i - 1 >= 0 && str[i - 1] == '\"') alors je laisse comme c'est 
 sinon j'enleve les spaces
 fontion qui enleve les spaces
 */
 
-int	taille_avec_un_espaces(char *str)
-{
-	int	i;
-	int	len;
+// int	taille_avec_un_espaces(char *str)
+// {
+// 	int	i;
+// 	int	len;
 
-	i = 0;
-	len = 0;
-	while (str[i])
-	{
-		if ((str[i] == ' ' || str[i] == '\t') && i != 0)
-		{
-			len++;
-			i++;
-			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
-				i++;
-			if ((str[i] == ' ' || str[i] == '\t'))
-				i++;
-		}
-		else if ((str[i] == ' ' || str[i] == '\t'))
-		{
-			i++;
-			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
-				i++;
-			if ((str[i] == ' ' || str[i] == '\t'))
-				i++;
-		}
-		else
-		{
-			i++;
-			len++;
-		}
-	}
-	return (len);
-}
+// 	i = 0;
+// 	len = 0;
+// 	while (str[i])
+// 	{
+// 		if ((str[i] == ' ' || str[i] == '\t') && i != 0)
+// 		{
+// 			len++;
+// 			i++;
+// 			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+// 				i++;
+// 			if ((str[i] == ' ' || str[i] == '\t'))
+// 				i++;
+// 		}
+// 		else if ((str[i] == ' ' || str[i] == '\t'))
+// 		{
+// 			i++;
+// 			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+// 				i++;
+// 			if ((str[i] == ' ' || str[i] == '\t'))
+// 				i++;
+// 		}
+// 		else
+// 		{
+// 			i++;
+// 			len++;
+// 		}
+// 	}
+// 	return (len);
+// }
 
-char	*nouvelle_str_un_espace(char *str)
-{
-	char	*res;
-	int		len;
-	int		i;
-	int		j;
+// char	*nouvelle_str_un_espace(char *str)
+// {
+// 	char	*res;
+// 	int		len;
+// 	int		i;
+// 	int		j;
 
-	len = taille_avec_un_espaces(str);
-	printf("len %d\n", len);
-	res = ft_calloc(len + 1, sizeof(char));
-	if (!res)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		if ((str[i] == ' ' || str[i] == '\t') && i != 0)
-		{
-			res[j] = str[i];
-			i++;
-			j++;
-			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
-				i++;
-			if ((str[i] == ' ' || str[i] == '\t'))
-				i++;
-		}
-		else if ((str[i] == ' ' || str[i] == '\t'))
-		{
-			i++;
-			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
-				i++;
-			if ((str[i] == ' ' || str[i] == '\t'))
-				i++;
-		}
-		else
-		{
-			res[j] = str[i];
-			i++;
-			j++;
-		}
-	}
-	return (free(str), res);
-}
+// 	len = taille_avec_un_espaces(str);
+// 	printf("len %d\n", len);
+// 	res = ft_calloc(len + 1, sizeof(char));
+// 	if (!res)
+// 		return (NULL);
+// 	i = 0;
+// 	j = 0;
+// 	while (str[i])
+// 	{
+// 		if ((str[i] == ' ' || str[i] == '\t') && i != 0)
+// 		{
+// 			res[j] = str[i];
+// 			i++;
+// 			j++;
+// 			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+// 				i++;
+// 			if ((str[i] == ' ' || str[i] == '\t'))
+// 				i++;
+// 		}
+// 		else if ((str[i] == ' ' || str[i] == '\t'))
+// 		{
+// 			i++;
+// 			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+// 				i++;
+// 			if ((str[i] == ' ' || str[i] == '\t'))
+// 				i++;
+// 		}
+// 		else
+// 		{
+// 			res[j] = str[i];
+// 			i++;
+// 			j++;
+// 		}
+// 	}
+// 	return (free(str), res);
+// }

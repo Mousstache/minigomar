@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maheraul <maheraul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 22:44:42 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/29 22:44:08 by maheraul         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:38:41 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,7 @@ void	*parse_input(char *input)
 
 	ft_memset(&var, 0, sizeof(var));
 	var.d = 1;
-	var.len = ft_strlen(input);
-	var.lentotal = len_total(input, var.len);
+	var.lentotal = len_total(input, ft_strlen(input));
 	new = ft_calloc(sizeof(char), (var.lentotal + 1));
 	if (!new)
 		return (NULL);

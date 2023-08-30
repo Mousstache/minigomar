@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:37:45 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/30 18:55:50 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:51:22 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,27 @@ int	into_while_main(t_data *data, char *input)
 	return (0);
 }
 
+int	empty_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	if (!str[i])
+		return (1);
+	return (0);
+}
+
+char	*travailavecinput(char *input, t_data *data)
+{
+	positif(input);
+	input = parse_input(input);
+	input = posquote(input);
+	input = ft_expandd(input, data);
+	return (input);
+}
+
 int	while_main(t_data *data, char *input)
 {
 	while (1)
@@ -59,13 +80,14 @@ int	while_main(t_data *data, char *input)
 		if (!*input)
 			continue ;
 		add_history(input);
-		negatif(input);
-		if (valid_syntax(input, data))
+		if (empty_str(input))
+		{
+			free(input);
 			continue ;
-		positif(input);
-		input = parse_input(input);
-		input = posquote(input);
-		input = ft_expandd(input, data);
+		}
+		if (negatif(input) && valid_syntax(input, data))
+			continue ;
+		input = travailavecinput(input, data);
 		if (!*input)
 		{
 			free(input);

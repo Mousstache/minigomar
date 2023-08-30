@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:41:40 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/30 19:12:02 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:51:49 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,42 +28,41 @@ int	ft_norm2(int *i, char *str)
 	return (0);
 }
 
-int	syntax(char *str)
+int	ft_doublepipe(int *i, char *str)
+{
+	if (str[*i] == '|')
+	{
+		(*i) += 1;
+		while (str[*i] && (str[*i] == ' ' || str[*i] == '	'))
+			(*i)++;
+		if (str[*i] == '|')
+			return (1);
+	}
+	return (0);
+}
+
+int	syntax(char *s)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] && (str[i] == ' ' || str[i] == '	'))
+	while (s[i] && (s[i] == ' ' || s[i] == '	'))
 		i++;
-	if (str[i] == '|')
+	if (s[i] == '|')
 		return (13);
-	while (str[i])
+	while (s[i])
 	{
-		if (str[i + 1] == '\0')
-			if (ft_strchr("><|", str[i]) || ((str[i] == '<') && (str[i
-							+ 1] == '<')) || ((str[i] == '>') && (str[i
-							+ 1] == '>')))
-				return (10);
-		if (ft_norm2(&i, str))
+		if (!s[i + 1] && (ft_strchr("><|", s[i]) || ((s[i] == '<') && (s[i + 1] == '<'))
+				|| ((s[i] == '>') && (s[i + 1] == '>'))))
+			return (10);
+		if (ft_norm2(&i, s) || ft_doublepipe(&i, s))
 			return (2);
-		if (str[i] == '|')
+		if ((s[i] == '>') || (s[i] == '<'))
 		{
 			i++;
-			while (str[i] && (str[i] == ' ' || str[i] == '	'))
+			while (s[i] && (s[i] == ' ' || s[i] == '	'))
 				i++;
-			if (str[i] == '|')
-				return (48);
-		}
-		if ((str[i] == '>') || (str[i] == '<'))
-		{
-			i++;
-			while (str[i] && (str[i] == ' ' || str[i] == '	'))
-				i++;
-			if (str[i] == '<')// && (str[i + 1] == '<'))
-				return (98) ;
-			else if (str[i] == '>')// && (str[i + 1] == '>'))
-				return (981) ;
-			else if (ft_strchr("><|", str[i]))
+			if (ft_strchr("><|", s[i]))
 				return (3);
 		}
 		i++;

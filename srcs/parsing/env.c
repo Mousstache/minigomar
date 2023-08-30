@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 22:57:02 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/28 22:20:31 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:38:08 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,7 @@ char	*get_name_var(char *str)
 	if (!new)
 		return (NULL);
 	while (str[i] != 0 && str[i] != '=')
-	{
-		new[j] = str[i];
-		i++;
-		j++;
-	}
+		new[j++] = str[i++];
 	new[j] = 0;
 	return (new);
 }
