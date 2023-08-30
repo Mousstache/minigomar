@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 20:25:07 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/14 00:07:08 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 22:45:37 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,15 @@ void	slash(int sig)
 
 void	ctrlc(int sig)
 {
+	t_data *data;
+
 	if (sig == SIGINT)
 	{
+		data = starton();
 		ft_printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
+		data->status = 130;
 	}
 }

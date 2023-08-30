@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:09:30 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/30 18:36:15 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 22:48:57 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,11 @@ void	*free_pipex(t_data *data)
 			data->status = WEXITSTATUS(data->status);
 		if (data->status == 131 && !var++)
 			ft_printf("Quit (core dumped)\n");
+		if (data->status == 2)
+			data->status = 130;
+			// ft_printf("YA LE 130\n");
 	}
+	// printf("%i\n", data->status);
 	free(data->pid);
 	close(data->fd[0]);
 	return (NULL);

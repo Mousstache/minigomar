@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 02:40:18 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/30 20:52:47 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 22:52:35 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_enfant(t_data *data, char **argv, int i, char ***env)
 
 	signal(SIGINT, &ctrlc);
 	signal(SIGQUIT, &slash);
+	signal(SIGINT, &slash);
 	cmd = NULL;
 	free(data->pid);
 	cmd = parse(argv[i]);
