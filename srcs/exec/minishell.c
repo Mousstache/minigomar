@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 02:40:18 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/28 23:28:21 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:01:22 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_enfant(t_data *data, char **argv, int i, char ***env)
 	redirection(data, i, cmd);
 	if (cmd->cmd && ft_is_builtin_vrmnt(cmd->cmd))
 		data->status = ft_is_builtin(cmd, env);
-	else
+	else if (cmd->cmd)
 	{
 		execute(data, cmd, env);
 		data->status = 127;
@@ -96,6 +96,5 @@ void	*ft_pipex(t_data *data, char **argv, char ***env)
 		else if (data->pid[i] > 0)
 			ft_parent(data, i);
 	}
-	signal(SIGINT, &ctrlc);
-	return (free_pipex(data));
+	return (free_pipex(data), signal(SIGINT, &ctrlc), NULL);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_expand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maheraul <maheraul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 17:55:03 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/29 20:24:45 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/29 22:19:29 by maheraul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	count_is_heredoc(char *str, int *i, int *n)
 {
-	int x;
+	int	x;
 
 	x = *i;
 	if (str[x] && str[x + 1] && str[x] == '<' && str[x + 1] == '<')
@@ -33,9 +33,9 @@ int	count_is_heredoc(char *str, int *i, int *n)
 			(*n)++;
 			(*i)++;
 		}
-		return(1);
+		return (1);
 	}
-	return(0);
+	return (0);
 }
 
 int	count_squote(char *str, int *i, int *n)
@@ -66,7 +66,7 @@ int	count_expand(char *str, t_data *env)
 	n = 0;
 	while (str && str[i])
 	{
-		if (count_squote(str, &i, &n) || count_is_heredoc(str, &i, &n ))
+		if (count_squote(str, &i, &n) || count_is_heredoc(str, &i, &n))
 			;
 		else if (str[i] == '$' && str[i + 1])
 		{

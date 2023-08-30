@@ -6,11 +6,41 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:09:30 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/28 20:19:26 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 18:36:15 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	*ft_free_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+		return (NULL);
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	return (NULL);
+}
+
+void	free_docsmains(t_doc *doc, int n)
+{
+	int	i;
+
+	i = -1;
+	while (++i < n)
+	{
+		free(doc[i].del);
+		close(doc[i].fd[0]);
+	}
+	if (n)
+		free(doc);
+}
 
 void	*free_arg(int str, int tab, int lst, ...)
 {
@@ -50,7 +80,6 @@ void	*free_pipex(t_data *data)
 		if (data->status == 131 && !var++)
 			ft_printf("Quit (core dumped)\n");
 	}
-	// printf("JAI ACCES AU WAITPID %i\n", data->status);
 	free(data->pid);
 	close(data->fd[0]);
 	return (NULL);

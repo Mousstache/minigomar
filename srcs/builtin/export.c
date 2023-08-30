@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maheraul <maheraul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:51:52 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/29 20:26:25 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/29 22:33:10 by maheraul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	**add2(char **env, char **tab, int *k)
 		tab = malloc(sizeof(char *) * (count_string(env) + 1));
 	else
 		tab = malloc(sizeof(char *) * (count_string(env) + 2));
-	// printf("nombre = %d\n", count_string(env));
 	return (tab);
 }
 
@@ -47,7 +46,6 @@ char	**add_variable(t_data *env, char **envv)
 		tab[j++] = ft_strjoin(env->var_name, env->var_value);
 	tab[j] = NULL;
 	free_all(envv);
-	// env->env_copy = tab;
 	return (tab);
 }
 
@@ -71,7 +69,7 @@ int	export_error(char *str, char *msg)
 
 int	norme_export(char **str, t_data *envv, char ***env, int res)
 {
-	int		k;
+	int	k;
 
 	k = -1;
 	while (str[++k])
@@ -100,16 +98,7 @@ int	ft_export(char **str, char ***env)
 	if (!str[0])
 		return (0);
 	res = 0;
-	// int i = 0;
-	// while (*env[i])
-	// {
-	// 	printf("%s\n", *env[i]);
-	// 	i++;
-	// }
-	// printf("vlavlavla %s\n", *env[0]);
 	ft_memset(&envv, 0, sizeof(t_data));
-	// envv.env_copy = create_env(*env, 1);
 	res = norme_export(str, &envv, env, res);
-	// free_all(envv.env_copy);
 	return (res);
 }

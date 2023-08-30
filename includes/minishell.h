@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:25:39 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/28 23:04:25 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 18:34:26 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct t_data
 	char			**env_copy;
 	char			*var_name;
 	char			*var_value;
+	char			*str;
 }					t_data;
 
 typedef struct t_var
@@ -96,10 +97,12 @@ t_cmd				*parse_builtin(char *str);
 int					ft_strlen_total(char const *str, char *sep);
 
 //utils
-void				*ft_free_tab(char **tab);
 void				printtab(char **tab);
 void				printstruct(t_cmd *cmds);
 void				error_cmd(char *cmd);
+int					alphanum(char c);
+void				ft_strcat(char *dst, const char *src, int *n);
+char				*mgamiloueee(char *str);
 //main.c
 char				**path_recup(char **env);
 //pipex
@@ -122,6 +125,9 @@ char				*ft_expandd(char *str, t_data *env);
 char				*expand_ok(char *str, t_data *env, int *clef);
 //parse input
 void				*parse_input(char *input);
+//parse
+int					ft_is_num(char *str);
+char				*positif(char *str);
 //fill_cmd_struct.c
 int					chevron_comp(char *str);
 int					countarg(char **tab);
@@ -153,6 +159,8 @@ int					invalid_fd_nofork(t_data *data, t_cmd *cmd, char *file);
 void				*free_arg(int str, int tab, int lst, ...);
 void				free_all(char **tab);
 void				*free_pipex(t_data *data);
+void				free_docsmains(t_doc *doc, int n);
+void				*ft_free_tab(char **tab);
 //heredoc
 void				child_hd(char *del, int fd1);
 bool				here_doc(t_data *data, char *str);
@@ -165,7 +173,10 @@ int					ft_is_num(char *str);
 int					exit_fork(char **arg, char **env);
 int					exit_error(char **arg);
 void				dupclose(int fd[2]);
-
+//syntac
+int					posquote_two(char *input, int nb, int nb1, int i);
+int					valid_syntax(char *input, t_data *data);
+char				*posquote(char *input);
 // signaux
 void				ctrlc(int sig);
 void				slash(int sig);

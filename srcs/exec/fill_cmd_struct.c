@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 22:40:06 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/29 20:26:53 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 18:32:43 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,8 @@ t_cmd	*parse(char *str)
 		return (NULL);
 	len = countarg(input);
 	if (len == -1)
-		return (ft_freetab(input), fprintf(stderr, "ambigous redirect\n"), &cmds);
+		return (ft_freetab(input), fprintf(stderr, "ambigous redirect\n"),
+			&cmds);
 	cmds.arg = ft_calloc(sizeof(char *), len + 1);
 	if (!cmds.arg)
 		return (ft_freetab(input), NULL);

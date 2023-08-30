@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maheraul <maheraul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 22:44:42 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/28 19:20:11 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/29 22:44:08 by maheraul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,35 @@ void	count_sep(t_var *tot, char *input)
 	if ((input[tot->i] != '|' && input[tot->i + 1] && input[tot->i] == '>'
 			&& input[tot->i + 1] == '>') || (input[tot->i] != '|'
 			&& input[tot->i + 1] && input[tot->i] == '<' && input[tot->i
-					+ 1] == '<'))
+				+ 1] == '<'))
 		tot->d = 2;
 	if (tot->i > 0)
 		tot->j++;
 	tot->n = 1;
+}
+
+void	into_while_len_total(char *input, t_var *tot)
+{
+	if (input[tot->i] == 39)
+	{
+		tot->j++;
+		tot->i++;
+		while (input[tot->i] && input[tot->i] != 39)
+		{
+			tot->j++;
+			tot->i++;
+		}
+	}
+	else if (input[tot->i] == 34)
+	{
+		tot->j++;
+		tot->i++;
+		while (input[tot->i] && input[tot->i] != 34)
+		{
+			tot->j++;
+			tot->i++;
+		}
+	}
 }
 
 int	len_total(char *input, int len)
@@ -32,26 +56,7 @@ int	len_total(char *input, int len)
 	tot.d = 1;
 	while (input[tot.i])
 	{
-		if ( input[tot.i] == 39)
-		{
-			tot.j++;
-			tot.i++;
-			while(input[tot.i] && input[tot.i] != 39)
-			{
-				tot.j++;
-				tot.i++;
-			}
-		}
-		else if (input[tot.i] == 34 )
-		{
-			tot.j++;
-			tot.i++;
-			while(input[tot.i] && input[tot.i] != 34 )
-			{
-				tot.j++;
-				tot.i++;
-			}
-		}
+		into_while_len_total(input, &tot);
 		if (input[tot.i] == '|' || input[tot.i] == '<' || input[tot.i] == '>')
 			count_sep(&tot, input);
 		while (tot.d > 0)
@@ -73,7 +78,7 @@ void	*find_sep(t_var *var, char *input, char *new)
 	if ((input[var->i] != '|' && input[var->i + 1] && input[var->i] == '>'
 			&& input[var->i + 1] == '>') || (input[var->i] != '|'
 			&& input[var->i + 1] && input[var->i] == '<' && input[var->i
-					+ 1] == '<'))
+				+ 1] == '<'))
 		var->d = 2;
 	if (var->i > 0)
 			new[var->j++] = ' ';
@@ -98,13 +103,13 @@ void	*parse_input(char *input)
 		if (input[var.i] == 39)
 		{
 			new[var.j++] = input[var.i++];
-			while(input[var.i] && input[var.i] != 39)
+			while (input[var.i] && input[var.i] != 39)
 				new[var.j++] = input[var.i++];
 		}
-		else if (input[var.i] == 34 )
+		else if (input[var.i] == 34)
 		{
 			new[var.j++] = input[var.i++];
-			while(input[var.i] && input[var.i] != 34)
+			while (input[var.i] && input[var.i] != 34)
 				new[var.j++] = input[var.i++];
 		}
 		if (input[var.i] == '|' || input[var.i] == '<' || input[var.i] == '>')

@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 21:15:00 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/29 19:29:56 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 18:34:42 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,8 @@ char	*del_is(t_doc *doc, char *str)
 	{
 		if (str[i] == '<' && str[i + 1] && str[i + 1] == '<')
 		{
-
 			doc[n].index = n;
 			doc[n].del = next_word(&str[i + 2]);
-			// fprintf(stderr, "IN FORK [%s]{%p}\n", doc[n].del, doc[n].del);
 			pipe(doc[n].fd);
 			n++;
 		}
@@ -107,6 +105,8 @@ bool	here_doc(t_data *data, char *str)
 	if (!doc)
 		return (true);
 	del_is(doc, str);
+	data->docs = doc;
+	data->str = str;
 	signal(SIGINT, SIG_IGN);
 	pid = fork();
 	i = 0;
@@ -117,6 +117,5 @@ bool	here_doc(t_data *data, char *str)
 			close(doc[i++].fd[1]);
 	signal(SIGINT, &ctrlc);
 	waitpid(pid, 0, 0);
-	data->docs = doc;
 	return (data->stop);
 }

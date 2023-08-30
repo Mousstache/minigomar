@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:41:40 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/29 20:26:05 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:12:02 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,41 @@ int	syntax(char *str)
 {
 	int	i;
 
-	i = -1;
-	while (str[++i])
+	i = 0;
+	while (str[i] && (str[i] == ' ' || str[i] == '	'))
+		i++;
+	if (str[i] == '|')
+		return (13);
+	while (str[i])
 	{
 		if (str[i + 1] == '\0')
 			if (ft_strchr("><|", str[i]) || ((str[i] == '<') && (str[i
 							+ 1] == '<')) || ((str[i] == '>') && (str[i
 							+ 1] == '>')))
-				return (1);
+				return (10);
 		if (ft_norm2(&i, str))
-			return (1);
+			return (2);
+		if (str[i] == '|')
+		{
+			i++;
+			while (str[i] && (str[i] == ' ' || str[i] == '	'))
+				i++;
+			if (str[i] == '|')
+				return (48);
+		}
 		if ((str[i] == '>') || (str[i] == '<'))
 		{
 			i++;
 			while (str[i] && (str[i] == ' ' || str[i] == '	'))
 				i++;
-			if ((str[i] == '<') && (str[i + 1] == '<'))
-				return (0);
+			if (str[i] == '<')// && (str[i + 1] == '<'))
+				return (98) ;
+			else if (str[i] == '>')// && (str[i + 1] == '>'))
+				return (981) ;
 			else if (ft_strchr("><|", str[i]))
-				return (1);
+				return (3);
 		}
+		i++;
 	}
 	return (0);
 }

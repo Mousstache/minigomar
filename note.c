@@ -120,3 +120,11 @@ char *delimiter = strchr("PATH=/bin/", '=');
 char *name = args[i] = "PATH"
 char *value = delimiter + 1;
 	value = "/bin/"
+
+
+
+
+
+	here doc
+	ll min pour exit
+	ctrl c

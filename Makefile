@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: motroian <motroian@student.42.fr>          +#+  +:+       +#+         #
+#    By: maheraul <maheraul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/03 00:22:02 by maheraul          #+#    #+#              #
-#    Updated: 2023/08/14 00:17:21 by motroian         ###   ########.fr        #
+#    Updated: 2023/08/29 22:09:16 by maheraul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS_NAMES		=	main.c \
 					utils/lst.c \
 					utils/utils.c \
 					parsing/env.c \
+					parsing/syntax.c\
 					parsing/parse.c \
 					parsing/parse_input.c \
 					parsing/strjoin.c \

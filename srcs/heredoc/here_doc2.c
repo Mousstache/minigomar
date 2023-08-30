@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 23:21:07 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/29 19:11:56 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 18:35:49 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	exit_hd(int sig)
 			if (data->docs[i].del != NULL)
 				free(data->docs[i].del);
 		}
-		free(data->docs);
+		free_arg(2, 1, 0, data->docs, data->str, data->env_copy);
 		data->stop = true;
 		exit(130);
 	}

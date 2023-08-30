@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_fork.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maheraul <maheraul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 21:01:10 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/25 22:42:24 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/29 22:26:11 by maheraul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ int	exit_error(char **arg)
 	{
 		printf("exit\n");
 		ft_printf("bash: exit: %s: numeric argument required\n", arg[0]);
-		free_arg(0, 3, 1, data->cmds->arg, data->tab, data->env_copy, &data->cmds->lst);
+		free_arg(0, 3, 1, data->cmds->arg, data->tab, data->env_copy,
+			&data->cmds->lst);
 		exit((unsigned char)tmp);
 	}
-	free_arg(0, 3, 1, data->cmds->arg, data->tab, data->env_copy, &data->cmds->lst);
+	free_arg(0, 3, 1, data->cmds->arg, data->tab, data->env_copy,
+		&data->cmds->lst);
 	exit((unsigned char)tmp);
 }
 
@@ -43,7 +45,8 @@ int	exit_fork(char **arg, char **env)
 	data = starton();
 	if (!*arg || !arg[0])
 	{
-		free_arg(0, 3, 1, data->cmds->arg, data->tab, data->env_copy, &data->cmds->lst);
+		free_arg(0, 3, 1, data->cmds->arg, data->tab, data->env_copy,
+			&data->cmds->lst);
 		exit(0);
 	}
 	if (arg[0] && !ft_strcmp(arg[0], "--"))
@@ -51,7 +54,8 @@ int	exit_fork(char **arg, char **env)
 		if (!arg[1])
 		{
 			printf("exit\n");
-			free_arg(0, 3, 1, data->cmds->arg, data->tab, data->env_copy, &data->cmds->lst);
+			free_arg(0, 3, 1, data->cmds->arg, data->tab, data->env_copy,
+				&data->cmds->lst);
 			exit(0);
 		}
 		else if (!exit_error(arg + 1))
