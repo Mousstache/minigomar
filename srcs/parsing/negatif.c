@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   negatif.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 02:56:31 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/30 21:16:47 by motroian         ###   ########.fr       */
+/*   Created: 2023/08/30 20:28:36 by motroian          #+#    #+#             */
+/*   Updated: 2023/08/30 20:29:15 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_cd(char **arg, char ***env)
+char	*negatif(char *str)
 {
-	char	*str;
+	int		i;
+	char	c;
 
-	(void)env;
-	if (arg[0] && arg[1])
+	i = 0;
+	while (str[i])
 	{
-		ft_printf("bash: cd: too many arguments\n");
-		return (1);
+		while (str[i] && str[i] != 39 && str[i] != 34)
+			i++;
+		if (str[i] && (str[i] == 39 || str[i] == 34))
+		{
+			c = str[i];
+			i++;
+			while (str[i] && str[i] != c)
+			{
+				str[i] *= -1;
+				i++;
+			}
+			if (str[i] == c)
+				i++;
+		}
 	}
-	else if (!arg[0])
-	{
-		str = getenv("HOME");
-		if (!str)
-			return (ft_printf("bash: cd: HOME not set"), 1);
-		return (chdir(str));
-	}
-	else if (arg[0] && chdir(arg[0]) == -1)
-	{
-		perror(arg[0]);
-		return (1);
-	}
-	return (0);
+	return (str);
 }

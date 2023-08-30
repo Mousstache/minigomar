@@ -6,29 +6,11 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:37:45 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/30 19:51:22 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:30:14 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	init_struct(t_data *data, char **env)
-{
-	(void)env;
-	data->fork = 1;
-	data->previous = -1;
-	data->pid = malloc(sizeof(int) * data->nbcmd);
-	if (!data->pid)
-		return (ft_free_tab(data->tab), 1);
-	return (0);
-}
-
-t_data	*starton(void)
-{
-	static t_data	data = {0};
-
-	return (&data);
-}
 
 int	into_while_main(t_data *data, char *input)
 {

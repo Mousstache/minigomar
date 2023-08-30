@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 22:05:12 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/30 19:39:44 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 21:12:41 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 int	valid_syntax(char *input, t_data *data)
 {
 	if (quotes(input))
+	{
+		data->status = 2;
 		return (ft_printf("quote fail\n"), free(input), 1);
+	}
 	if (syntax(input))
+	{
+		data->status = 2;
 		return (ft_printf("syntax error\n"), free(input), 1);
+	}
 	data->var_name = NULL;
 	data->var_value = NULL;
 	return (0);

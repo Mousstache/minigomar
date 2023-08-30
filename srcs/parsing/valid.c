@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:41:40 by motroian          #+#    #+#             */
-/*   Updated: 2023/08/30 19:51:49 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:29:09 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	syntax(char *s)
 		return (13);
 	while (s[i])
 	{
-		if (!s[i + 1] && (ft_strchr("><|", s[i]) || ((s[i] == '<') && (s[i + 1] == '<'))
-				|| ((s[i] == '>') && (s[i + 1] == '>'))))
+		if (!s[i + 1] && (ft_strchr("><|", s[i]) || (!ft_strncmp(&s[i], "<<", 2)
+					|| !ft_strncmp(&s[i], ">>", 2))))
 			return (10);
 		if (ft_norm2(&i, s) || ft_doublepipe(&i, s))
 			return (2);
@@ -104,30 +104,4 @@ int	ft_norme(char *str, int *i, int c, int *quote)
 	if (str[(*i)++] == c)
 		(*quote)++;
 	return (c);
-}
-
-char	*negatif(char *str)
-{
-	int		i;
-	char	c;
-
-	i = 0;
-	while (str[i])
-	{
-		while (str[i] && str[i] != 39 && str[i] != 34)
-			i++;
-		if (str[i] && (str[i] == 39 || str[i] == 34))
-		{
-			c = str[i];
-			i++;
-			while (str[i] && str[i] != c)
-			{
-				str[i] *= -1;
-				i++;
-			}
-			if (str[i] == c)
-				i++;
-		}
-	}
-	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 22:21:07 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/14 00:08:20 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 21:21:54 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ void	ft_lst_clear(t_list **lst)
 	(*lst) = NULL;
 }
 
-void	ft_printlist(t_list *list)
-{
-	t_list	*tmp;
+// void	ft_printlist(t_list *list)
+// {
+// 	t_list	*tmp;
 
-	tmp = list;
-	while (tmp != NULL)
-	{
-		fprintf(stderr, "[%i]{%s}[%i]\n", tmp->type, tmp->file, tmp->index);
-		tmp = tmp->next;
-	}
-}
+// 	tmp = list;
+// 	while (tmp != NULL)
+// 	{
+// 		fprintf(stderr, "[%i]{%s}[%i]\n", tmp->type, tmp->file, tmp->index);
+// 		tmp = tmp->next;
+// 	}
+// }

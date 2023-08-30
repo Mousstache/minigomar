@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 02:56:31 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/30 21:16:47 by motroian         ###   ########.fr       */
+/*   Created: 2023/08/30 20:29:29 by motroian          #+#    #+#             */
+/*   Updated: 2023/08/30 20:29:42 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_cd(char **arg, char ***env)
+int	init_struct(t_data *data, char **env)
 {
-	char	*str;
-
 	(void)env;
-	if (arg[0] && arg[1])
-	{
-		ft_printf("bash: cd: too many arguments\n");
-		return (1);
-	}
-	else if (!arg[0])
-	{
-		str = getenv("HOME");
-		if (!str)
-			return (ft_printf("bash: cd: HOME not set"), 1);
-		return (chdir(str));
-	}
-	else if (arg[0] && chdir(arg[0]) == -1)
-	{
-		perror(arg[0]);
-		return (1);
-	}
+	data->fork = 1;
+	data->previous = -1;
+	data->pid = malloc(sizeof(int) * data->nbcmd);
+	if (!data->pid)
+		return (ft_free_tab(data->tab), 1);
 	return (0);
+}
+
+t_data	*starton(void)
+{
+	static t_data	data = {0};
+
+	return (&data);
 }

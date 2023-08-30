@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 02:40:18 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/30 19:01:22 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:52:47 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ int	ft_nofork(t_data *data, t_cmd *cmd, char ***env)
 		while (cmd->arg[i])
 			positif(cmd->arg[i++]);
 		data->status = ft_is_builtin(cmd, env);
-		dupclose(data->fddup);
-		free_arg(0, 1, 1, data->onecmd->arg, &data->onecmd->lst);
-		return (0);
 	}
+	free_arg(0, 1, 1, data->onecmd->arg, &data->onecmd->lst);
 	dupclose(data->fddup);
 	return (0);
 }

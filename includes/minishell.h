@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:25:39 by maheraul          #+#    #+#             */
-/*   Updated: 2023/08/30 19:33:09 by motroian         ###   ########.fr       */
+/*   Updated: 2023/08/30 21:03:34 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,15 @@ typedef struct t_var
 	int				n;
 	int				d;
 	int				len;
-	int				lentotal;
 }					t_var;
 
 typedef int			(*t_builtin)(char **arg, char ***env);
 
 t_data				*starton(void);
+int					init_struct(t_data *data, char **env);
 t_cmd				*parse_builtin(char *str);
 int					ft_strlen_total(char const *str, char *sep);
+void				copyall(t_var *var, char *input, char *new, char c);
 
 //utils
 void				printtab(char **tab);
